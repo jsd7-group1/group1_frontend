@@ -10,6 +10,8 @@ import App from './App.jsx'
 import './index.css'
 import CartPage from './pages/CartPage.jsx';
 import PaymentPage from './pages/PaymentPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
 
 
 
@@ -31,11 +33,11 @@ const Main = () => {
             },
             {
               path:"/login",
-              element:<></>
+              element:<LoginPage />
             },
             {
               path:"/register",
-              element:<></>
+              element:<RegisterPage />
             },
             {
               path:"/allProduct",
