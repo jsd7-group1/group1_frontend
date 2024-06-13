@@ -6,6 +6,9 @@ import Allicon from "../assets/Allpd-icon/all.png"
 import Breadicon from "../assets/Allpd-icon/bread.png"
 import Coldicon from "../assets/Allpd-icon/cold.png"
 import Hoticon from "../assets/Allpd-icon/hot.png"
+import Plus from "../assets/Allpd-icon/Icon Plus.svg"
+import Minus from "../assets/Allpd-icon/Icon Minus.svg"
+import Buy from "../assets/Allpd-icon/Buy.svg"
 
 
 const AllproductPage = () => {
@@ -70,7 +73,7 @@ const AllproductPage = () => {
                       <h3>Ice Flat White</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -90,12 +93,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -117,7 +120,7 @@ const AllproductPage = () => {
                       <h3>Iced Classic Chocolate</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -140,12 +143,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -167,7 +170,7 @@ const AllproductPage = () => {
                       <h3>Malty Chocolate Latte</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -190,12 +193,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -218,7 +221,7 @@ const AllproductPage = () => {
                       <h3>Mocha Frappuccino</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -241,12 +244,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -268,7 +271,7 @@ const AllproductPage = () => {
                       <h3>Americano</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -288,12 +291,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -315,7 +318,7 @@ const AllproductPage = () => {
                       <h3>Dark Chocolate Mocha</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -338,12 +341,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -366,7 +369,7 @@ const AllproductPage = () => {
                       <h3>Cafe Mocha</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -388,12 +391,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -415,7 +418,7 @@ const AllproductPage = () => {
                       <h3>Brewed Coffee</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -435,12 +438,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -462,7 +465,7 @@ const AllproductPage = () => {
                       <h3>Expresso Con panna</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -482,12 +485,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -510,7 +513,7 @@ const AllproductPage = () => {
                       <h3>Caramel Macchiato</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -532,12 +535,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -559,7 +562,7 @@ const AllproductPage = () => {
                       <h3>Yuzu Cold Brew</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -582,12 +585,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -609,7 +612,7 @@ const AllproductPage = () => {
                       <h3>Add-Ons</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -629,12 +632,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -657,7 +660,7 @@ const AllproductPage = () => {
                       <h3>Strawberry Tart</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -680,12 +683,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -707,7 +710,7 @@ const AllproductPage = () => {
                       <h3>Myrtillus Cheese cake</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -730,12 +733,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -757,7 +760,7 @@ const AllproductPage = () => {
                       <h3>Prunus dulcis Croissant</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -780,12 +783,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -808,7 +811,7 @@ const AllproductPage = () => {
                       <h3>Soft Oatmeal Raisin Cookie</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -831,12 +834,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -858,7 +861,7 @@ const AllproductPage = () => {
                       <h3>Custard Cream, Mochi Waffle</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -878,12 +881,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
@@ -905,7 +908,7 @@ const AllproductPage = () => {
                       <h3>Jumbo Sausage Bite</h3>
                       <div>
                         <img
-                          src="imgallproduct/Buy.svg"
+                          src={Buy}
                           className="w-6 h-6 cursor-pointer"
                         />
                       </div>
@@ -925,12 +928,12 @@ const AllproductPage = () => {
                       {/*finish price*/}
                       <div className="flex items-center gap-2">
                         <img
-                          src="imgallproduct/Icon Minus.svg"
+                          src={Minus}
                           className="w-6 h-6 cursor-grab"
                         />
                         <h3 className="text-[18px]">0</h3>
                         <img
-                          src="imgallproduct/Icon Plus.svg"
+                          src={Plus}
                           className="w-6 h-6 cursor-grab"
                         />
                       </div>
