@@ -4,7 +4,7 @@ import './App.css'
 function App() {
 
   return (
-    <div className='flex flex-col justify-between gap-6 font-bold'>
+    <div className='flex flex-col justify-between gap-6 font-bold text-center'>
       <h1 className='text-center text-5xl'>Home Page for dev</h1>
       <Link to="/home"><button>home</button></Link>
       <Link to="/login"><button>login</button></Link>

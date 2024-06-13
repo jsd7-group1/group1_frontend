@@ -10,6 +10,7 @@ import App from './App.jsx'
 import './index.css'
 import CartPage from './pages/CartPage.jsx';
 import PaymentPage from './pages/PaymentPage.jsx';
+import NavBar from './components/Navbar.jsx';
 
 
 
@@ -23,31 +24,59 @@ const Main = () => {
           router={createBrowserRouter([
             {
               path:"/",
-              element:<App /> //Test router just for a dev , this one should be home page 
+              element:<NavBar />, //Test router just for a dev , this one should be home page 
+              children:[{
+                path:"/",
+                element:<App />
+              }]
             },
             {
               path:"/home",
-              element:<></>
+              element:<NavBar />,
+              children:[{
+                path:"",
+                element:<></>
+              }]
             },
             {
               path:"/login",
-              element:<></>
+              element:<NavBar />,
+              children:[{
+                path:"",
+                element:<></>
+              }]
             },
             {
               path:"/register",
-              element:<></>
+              element:<NavBar />,
+              children:[{
+                path:"",
+                element:<></>
+              }]
             },
             {
               path:"/allProduct",
-              element:<></>
+              element:<NavBar />,
+              children:[{
+                path:"",
+                element:<></>
+              }]
             },
             {
               path:"/cart",
-              element:<CartPage/>
+              element:<NavBar/>,
+              children:[{
+                path:"",
+                element:<CartPage />
+              }]
             },
             {
               path:"/payment",
-              element:<PaymentPage />
+              element:<NavBar />,
+              children:[{
+                path:"",
+                element:<PaymentPage />
+              }]
             }
           ])}/>
       </React.StrictMode>,
