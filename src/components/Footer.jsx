@@ -1,7 +1,7 @@
 import React from 'react'
-import Reel from "../assets/reel.png"
-import Instragram from "../assets/ig.png"
-import Chat from "../assets/chat.png"
+import Reel from "../assets/images/footer-icons/reel.png"
+import Instragram from "../assets/images/footer-icons/ig.png"
+import Chat from "../assets/images/footer-icons/chat.png"
 
 const Footer =()=> {
   return (

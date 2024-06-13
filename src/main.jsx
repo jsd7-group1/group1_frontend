@@ -10,7 +10,10 @@ import App from './App.jsx'
 import './index.css'
 import CartPage from './pages/CartPage.jsx';
 import PaymentPage from './pages/PaymentPage.jsx';
-import NavBar from './components/Navbar.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import AllproductPage from './pages/AllproductPage.jsx';
+import HomePage from './pages/HomePage.jsx';
 
 
 
@@ -24,43 +27,23 @@ const Main = () => {
           router={createBrowserRouter([
             {
               path:"/",
-              element:<NavBar />, //Test router just for a dev , this one should be home page 
-              children:[{
-                path:"/",
-                element:<App />
-              }]
+              element:<App /> //Test router just for a dev , this one should be home page
             },
             {
               path:"/home",
-              element:<NavBar />,
-              children:[{
-                path:"",
-                element:<></>
-              }]
+              element:<HomePage />
             },
             {
               path:"/login",
-              element:<NavBar />,
-              children:[{
-                path:"",
-                element:<></>
-              }]
+              element:<LoginPage />
             },
             {
               path:"/register",
-              element:<NavBar />,
-              children:[{
-                path:"",
-                element:<></>
-              }]
+              element:<RegisterPage />
             },
             {
               path:"/allProduct",
-              element:<NavBar />,
-              children:[{
-                path:"",
-                element:<></>
-              }]
+              element:<AllproductPage />
             },
             {
               path:"/cart",
