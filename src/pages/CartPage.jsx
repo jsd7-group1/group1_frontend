@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom'
 const CartPage = () => {
   return (
     <div>
-        <h1 className='text-center text-5xl' >Cart page</h1>
         <section className="md:p-16  bg-[#e5dfd6]">
-          <div className="w-full bg-white md:px-10 md:py-8 p-6 rounded-md  ">
+          <div className="w-full bg-white md:px-10 md:py-8 p-6 rounded-md overscroll-y-contain ">
             <div className=" pb-8 flex justify-center md:inline-block">
               <h1 className="font-semibold text-2xl  md:text-4xl ">Shopping Cart</h1>
             </div>

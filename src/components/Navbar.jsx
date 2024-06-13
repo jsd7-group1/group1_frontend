@@ -95,6 +95,7 @@ const NavBar = () => {
         </div>
         </div>
         <Outlet /><br />
+        <Footer />
     </>
   );
 };

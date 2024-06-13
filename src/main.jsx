@@ -14,6 +14,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import AllproductPage from './pages/AllproductPage.jsx';
 import HomePage from './pages/HomePage.jsx';
+import NavBar from './components/Navbar.jsx';
 
 
 
