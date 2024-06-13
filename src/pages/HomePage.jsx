@@ -21,8 +21,7 @@ const HomePage = () => {
         <section
           className="flex flex-col min-h-screen bg-slate-800 bg-center bg-cover  bg-fixed bg-black/30"
           style={{
-            backgroundImage: { Herobg },
-          }}
+            backgroundImage: `url(${Herobg})` }}
         >
           <Navbar />
           {/*********************************/}
