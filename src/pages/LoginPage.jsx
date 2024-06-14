@@ -87,7 +87,7 @@ function LoginPage() {
               </div>
               {/*  */}
               {/* RIGHT SIDE */}
-              <div className="flex-1 bg-[#A8715C] h-full justify-center items-center hidden lg:flex">
+              <div className="flex-1 bg-[#A8715C] h-screen justify-center items-center hidden lg:flex">
                 <img
                   src="src\assets\images\log-in\Login-pc.jpg"
                   className="rounded-full w-145 h-145"
