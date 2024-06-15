@@ -1,7 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function RegisterPage() {
+  const [formData, setFormData] = useState({
+    email: "",
+    fullname: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = {};
+    if (!formData.fullname.trim()) {
+      validationErrors.fullname = "Full name is required!";
+    }
+
+    if (!formData.email.trim()) {
+      validationErrors.email = "Email is required!";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      validationErrors.email = "Email is not valid!";
+    }
+
+    if (!formData.password.trim()) {
+      validationErrors.password = "Password is required!";
+    } else if (!formData.password.length < 8) {
+      validationErrors.password = "Password should be at least 8 character!";
+    }
+
+    if (formData.confirmPassword !== formData.password) {
+      validationErrors.confirmPassword = "Password not match!";
+    }
+
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      alert("Register successfully ");
+    }
+  };
+
   return (
     <section className="h-screen">
       <div className="h-2/5 bg-[#A8715C] lg:bg-inherit">
@@ -37,28 +84,42 @@ function RegisterPage() {
                 {/*  */}
                 {/* INFORMATION INPUT  */}
                 {/*  */}
-                <div className="w-full flex-1 mt-8">
+                <form onSubmit={handleSubmit} className="w-full flex-1 mt-8">
                   <div className="mx-auto max-w-sm">
                     <input
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      id="email"
                       type="email"
+                      onChange={handleChange}
                       placeholder="Email"
                     />
+                    {errors.email && <span>{errors.email}</span>}
                     <input
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                      id="fullName"
                       type="text"
+                      onChange={handleChange}
                       placeholder="Full name"
                     />
+                    {errors.fullname && <span>{errors.fullname}</span>}
                     <input
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                      id="password"
                       type="password"
+                      onChange={handleChange}
                       placeholder="Password"
                     />
+                    {errors.password && <span>{errors.password}</span>}
                     <input
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                      id="confirmPassword"
                       type="password"
-                      placeholder="Re-enter Password"
+                      onChange={handleChange}
+                      placeholder="Confirm Password"
                     />
+                    {errors.confirmPassword && (
+                      <span>{errors.confirmPassword}</span>
+                    )}
                     <label
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       htmlFor="file_input"
@@ -71,8 +132,10 @@ function RegisterPage() {
                       type="file"
                     />
                     <Link to="/home">
-                      <button className="mt-5 tracking-wide font-semibold bg-[#A8715C] text-gray-100 w-full py-4 rounded-lg hover:bg-[#89583f] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                        {/*  */}
+                      <button
+                        className="mt-5 tracking-wide font-semibold bg-[#A8715C] text-gray-100 w-full py-4 rounded-lg hover:bg-[#89583f] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                        onClick={handleSubmit}
+                      >
                         <svg
                           className="w-6 h-6 -ml-2"
                           fill="none"
@@ -92,7 +155,7 @@ function RegisterPage() {
                     </Link>
                     <p />
                   </div>
-                </div>
+                </form>
               </div>
             </div>
             {/*  */}
