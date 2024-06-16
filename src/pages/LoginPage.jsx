@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -10,6 +10,7 @@ function LoginPage() {
   });
 
   const [errors, setErrors] = useState({});
+  const nevigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +31,7 @@ function LoginPage() {
 
     if (!formData.password.trim()) {
       validationErrors.password = "Password is required!";
-    } else if (!formData.password.length < 8) {
+    } else if (formData.password.length < 8) {
       validationErrors.password = "Password should be at least 8 character!";
     }
 
@@ -38,6 +39,7 @@ function LoginPage() {
 
     if (Object.keys(validationErrors).length === 0) {
       alert("Login successfully ");
+      nevigate("/home");
     }
   };
 
@@ -45,7 +47,6 @@ function LoginPage() {
     <>
       <section className="h-screen">
         <div className="h-2/5 bg-[#A8715C] lg:bg-inherit">
-          {/* SOURCE:https://codepen.io/owaiswiz/pen/jOPvEPB */}
           <div className="min-h-screen  flex justify-center">
             <div className="max-w-screen-x m-0 sm:rounded-lg flex items-center justify-center flex-1">
               <div className="lg:w-5/12 xl:w-7/12 p-6 sm:p-12">
@@ -110,7 +111,7 @@ function LoginPage() {
                           </div>
                         </Link>
                       </p>
-                      <Link to="/home">
+
                         <button
                           type="submit"
                           onClick={handleSubmit}
@@ -129,10 +130,9 @@ function LoginPage() {
                             <circle cx="8.5" cy={7} r={4} />
                           </svg>
                           <span className="ml-3">
-                            <a href="./index.html"> Sign In</a>{" "}
+                            <div> Sign In</div>{" "}
                           </span>
                         </button>
-                      </Link>
                       <p />
                     </div>
                   </form>
