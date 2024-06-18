@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState({});
-  const nevigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +40,7 @@ function LoginPage() {
 
     if (Object.keys(validationErrors).length === 0) {
       alert("Login successfully ");
-      nevigate("/home");
+      navigate("/home");
     }
   };
 
