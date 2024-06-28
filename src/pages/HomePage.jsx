@@ -112,7 +112,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="./assets/images/hero/Coffee.png"
+                src="src\assets\images\hero\Coffee.png"
                 alt=""
                 className="card_img"
               />
@@ -139,7 +139,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="./assets/images/hero/Coffee.png"
+                src="src\assets\images\hero\Coffee.png"
                 alt=""
                 className="card_img"
               />
@@ -166,7 +166,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="./assets/images/hero/Coffee.png"
+                src="src\assets\images\hero\Coffee.png"
                 alt=""
                 className="card_img"
               />
@@ -193,7 +193,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="./assets/images/hero/Coffee.png"
+                src="src\assets\images\hero\Coffee.png"
                 alt=""
                 className="card_img"
               />
@@ -331,7 +331,7 @@ const HomePage = () => {
           <div className="lg:w1/2 py-8">
             <img
               className="h-80"
-              src="./assets/images/hero/signatureproduct.svg"
+              src="src\assets\images\hero\signatureproduct.png"
               alt="Signature"
             />
           </div>

@@ -146,6 +146,7 @@ function RegisterPage() {
                       onChange={handleChange}
                     />
                     {errors.file && <span>{errors.file}</span>}
+                    {/* change from box to icon */}
                     <button
                       className="mt-5 tracking-wide font-semibold bg-[#A8715C] text-gray-100 w-full py-4 rounded-lg hover:bg-[#89583f] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                       onClick={handleSubmit}

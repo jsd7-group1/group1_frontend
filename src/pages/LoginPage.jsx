@@ -112,7 +112,7 @@ function LoginPage() {
                           </div>
                         </Link>
                       </p>
-
+                          {/* check box for remember me  */}
                         <button
                           type="submit"
                           onClick={handleSubmit}
