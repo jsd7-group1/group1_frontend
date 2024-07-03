@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { IonIcon } from '@ionic/react';
 import { menu, close } from 'ionicons/icons';
 import Logo from "../assets/images/navbar-icons/logo.png"
-import Footer from './Footer';
+
 
 
 const NavBar = () => {
@@ -95,7 +95,6 @@ const NavBar = () => {
         </div>
         </div>
         <Outlet /><br />
-        <Footer />
     </>
   );
 };
