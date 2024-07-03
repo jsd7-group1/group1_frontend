@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { IonIcon } from '@ionic/react';
 import { menu, close } from 'ionicons/icons';
-import Logo from "../assets/logo.png"
-import Footer from './Footer';
+import Logo from "../assets/images/navbar-icons/logo.png"
+
 
 
 const NavBar = () => {
@@ -95,7 +95,6 @@ const NavBar = () => {
         </div>
         </div>
         <Outlet /><br />
-        <Footer/>
     </>
   );
 };

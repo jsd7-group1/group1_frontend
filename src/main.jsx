@@ -10,6 +10,11 @@ import App from './App.jsx'
 import './index.css'
 import CartPage from './pages/CartPage.jsx';
 import PaymentPage from './pages/PaymentPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import AllproductPage from './pages/AllproductPage.jsx';
+import HomePage from './pages/HomePage.jsx';
+import NavBar from './components/Navbar.jsx';
 
 
 
@@ -23,31 +28,39 @@ const Main = () => {
           router={createBrowserRouter([
             {
               path:"/",
-              element:<App /> //Test router just for a dev , this one should be home page 
+              element:<App /> //Test router just for a dev , this one should be home page
             },
             {
               path:"/home",
-              element:<></>
+              element:<HomePage />
             },
             {
               path:"/login",
-              element:<></>
+              element:<LoginPage />
             },
             {
               path:"/register",
-              element:<></>
+              element:<RegisterPage />
             },
             {
               path:"/allProduct",
-              element:<></>
+              element:<AllproductPage />
             },
             {
               path:"/cart",
-              element:<CartPage/>
+              element:<NavBar/>,
+              children:[{
+                path:"",
+                element:<CartPage />
+              }]
             },
             {
               path:"/payment",
-              element:<PaymentPage />
+              element:<NavBar />,
+              children:[{
+                path:"",
+                element:<PaymentPage />
+              }]
             }
           ])}/>
       </React.StrictMode>,
