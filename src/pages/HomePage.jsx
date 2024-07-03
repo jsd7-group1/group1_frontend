@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar"
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Herobg from "../assets/images/hero/herobackground.png";
 
@@ -21,7 +21,8 @@ const HomePage = () => {
         <section
           className="flex flex-col min-h-screen bg-slate-800 bg-center bg-cover  bg-fixed bg-black/30"
           style={{
-            backgroundImage: `url(${Herobg})` }}
+            backgroundImage: `url(${Herobg})`,
+          }}
         >
           <Navbar />
           {/*********************************/}
@@ -111,7 +112,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="./assets/images/hero/Coffee.png"
+                src="src\assets\images\hero\Coffee.png"
                 alt=""
                 className="card_img"
               />
@@ -138,7 +139,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="./assets/images/hero/Coffee.png"
+                src="src\assets\images\hero\Coffee.png"
                 alt=""
                 className="card_img"
               />
@@ -165,7 +166,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="./assets/images/hero/Coffee.png"
+                src="src\assets\images\hero\Coffee.png"
                 alt=""
                 className="card_img"
               />
@@ -192,7 +193,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="./assets/images/hero/Coffee.png"
+                src="src\assets\images\hero\Coffee.png"
                 alt=""
                 className="card_img"
               />
@@ -261,7 +262,7 @@ const HomePage = () => {
         <div className="pt-6">
           <div className="card_top relative">
             <img
-              src="./assets/images/hero/Coffee.png"
+              src="../assets/images/hero/Coffee.png"
               alt=""
               className="card_img"
             />
@@ -314,12 +315,11 @@ const HomePage = () => {
               <strong>Signature Coffee</strong>.
             </p>
             <div className="flex justify-center mt-10 md:justify-start gap-6">
-              <a
-                href="#"
-                className="text-white bg-[#655050] font-medium  px-5 py-4 text-center hover:bg-white hover:text-[#655050] border-2 border-[#655050] hover:drop-shadow-md transition duration-300 ease-in-out"
-              >
+              <Link to="/allProduct">
+              <div className="text-white bg-[#655050] font-medium  px-5 py-4 text-center hover:bg-white hover:text-[#655050] border-2 border-[#655050] hover:drop-shadow-md transition duration-300 ease-in-out">
                 Order Now ➜
-              </a>
+              </div>
+              </Link>
               <a
                 href="#"
                 className="text-[#655050] bg-transparent font-medium border-2 border-[#655050]  px-5 py-4 text-center  hover:text-[#b0adad] hover:drop-shadow-md transition duration-300 ease-in-out"
@@ -331,7 +331,7 @@ const HomePage = () => {
           <div className="lg:w1/2 py-8">
             <img
               className="h-80"
-              src="./assets/images/hero/signatureproduct.svg"
+              src="src\assets\images\hero\signatureproduct.png"
               alt="Signature"
             />
           </div>
