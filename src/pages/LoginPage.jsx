@@ -2,6 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function LoginPage() {
   
@@ -45,7 +46,7 @@ function LoginPage() {
   };
 
   return (
-    <>
+    <div className="h-screen">
       <section className="h-screen">
         <div className="h-2/5 bg-[#A8715C] lg:bg-inherit">
           <div className="min-h-screen  flex justify-center">
@@ -151,7 +152,8 @@ function LoginPage() {
           </div>
         </div>
       </section>
-    </>
+      <Footer />
+    </div>
   );
 }
 

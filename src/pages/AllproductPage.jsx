@@ -18,7 +18,9 @@ const AllproductPage = () => {
     // Simulating fetching data from an API
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://6684bb4c56e7503d1ae0f994.mockapi.io/product/allproduct");
+        const response = await axios.get(
+          "https://6684bb4c56e7503d1ae0f994.mockapi.io/product/allproduct"
+        );
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -41,9 +43,9 @@ const AllproductPage = () => {
   const filteredProducts = getFilteredProducts();
 
   return (
-    <>
+    <div className="h-screen">
       <div
-        className="bg-no-repeat bg-cover bg-left bg-fixed"
+        className="bg-no-repeat bg-cover bg-left bg-fixed h"
         style={{
           backgroundImage:
             "url(https://img5.pic.in.th/file/secure-sv1/productb98c8ecaa4907e61.png)",
@@ -107,7 +109,11 @@ const AllproductPage = () => {
                 {/*left*/}
                 <div className="max-w-[200px] max-h-[200px]">
                   <div className="h-full w-full overflow-hidden rounded-md">
-                    <img src={product.imgUrl} alt={product.productName} className="block" />
+                    <img
+                      src={product.imgUrl}
+                      alt={product.productName}
+                      className="block"
+                    />
                   </div>
                 </div>
                 {/*right*/}
@@ -115,7 +121,11 @@ const AllproductPage = () => {
                   <div className="flex justify-between text-[22px]">
                     <h3>{product.productName}</h3>
                     <div>
-                      <img src={Buy} className="w-6 h-6 cursor-pointer" alt="Buy" />
+                      <img
+                        src={Buy}
+                        className="w-6 h-6 cursor-pointer"
+                        alt="Buy"
+                      />
                     </div>
                   </div>
                   <div className="flex-1 text-[14px] text-[#979797]">
@@ -131,9 +141,17 @@ const AllproductPage = () => {
                       </h3>
                     </div>
                     <div className="flex items-center gap-2">
-                      <img src={Minus} className="w-6 h-6 cursor-grab" alt="Minus" />
+                      <img
+                        src={Minus}
+                        className="w-6 h-6 cursor-grab"
+                        alt="Minus"
+                      />
                       <h3 className="text-[18px]">0</h3>
-                      <img src={Plus} className="w-6 h-6 cursor-grab" alt="Plus" />
+                      <img
+                        src={Plus}
+                        className="w-6 h-6 cursor-grab"
+                        alt="Plus"
+                      />
                     </div>
                   </div>
                 </div>
@@ -143,7 +161,7 @@ const AllproductPage = () => {
         </section>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
