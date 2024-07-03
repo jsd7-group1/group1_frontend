@@ -136,7 +136,7 @@ const CartPage = () => {
                 </div>
                 <Link to="/payment" className="md:flex md:justify-end md:mt-8 mt-8 ">
                   <button
-                    className="md:px-12 md:py-4 p-4 rounded-md text-white bg-[#897979]  hover:bg-[#00C9CB] md:w-1/2 w-full text-xl"
+                    className="md:px-12 md:py-4 p-4 rounded-md text-white bg-[#897979]  hover:bg-white  hover:text-[#897979] md:w-1/2 w-full text-xl"
                   >
                     CHECKOUT
                   </button>

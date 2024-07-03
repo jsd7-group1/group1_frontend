@@ -221,7 +221,7 @@ const PaymentPage = () => {
               </Link>
               <button
                 type="button"
-                className="px-6 py-4 bg-[#897979] rounded-md hover:bg-[#00C9CB]  w-4/5 md:w-[49.50%] md:boder-2 text-white text-xl"
+                className="px-6 py-4 bg-[#897979] rounded-md hover:bg-white hover:text-[#897979]  w-4/5 md:w-[49.50%] md:boder-2 text-white text-xl"
               >
                 Submit
               </button>
