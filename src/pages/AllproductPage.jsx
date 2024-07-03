@@ -19,7 +19,7 @@ const AllproductPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://6684bb4c56e7503d1ae0f994.mockapi.io/product/allproduct"
+          "https://6684bb4c56e7503d1ae0f994.mockapi.io/coffee/allproduct"
         );
         setProducts(response.data);
       } catch (error) {
