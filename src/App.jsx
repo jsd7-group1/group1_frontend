@@ -1,21 +1,26 @@
-import { Link } from 'react-router-dom'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import CartPage from './pages/CartPage.jsx';
+import PaymentPage from './pages/PaymentPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import AllproductPage from './pages/AllproductPage.jsx';
+import HomePage from './pages/HomePage.jsx';
 
 function App() {
-
   return (
-    <div className='flex flex-col items-center gap-6 font-bold'>
-      <h1 className='text-center text-5xl mb-16'>Home Page for dev</h1>
-      <div className='text-3xl flex flex-col items-center gap-6 font-semibold'>
-      <Link to="/home"><button>home</button></Link>
-      <Link to="/login"><button>login</button></Link>
-      <Link to="/register"><button>register</button></Link>
-      <Link to="/allProduct"><button>allProduct</button></Link>
-      <Link to="/cart"><button>cart</button></Link>
-      <Link to="/payment"><button>payment</button></Link>
-      </div>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        {/* <Router path="/home" element={<HomePage />}></Router> */}
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/register" element={<RegisterPage />}></Route>
+        <Route path="/allProduct" element={<AllproductPage />}></Route>
+        <Route path="/cart" element={<CartPage />}></Route>
+        <Route path="/payment" element={<PaymentPage />}></Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

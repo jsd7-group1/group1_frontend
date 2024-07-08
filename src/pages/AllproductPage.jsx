@@ -1,5 +1,7 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Allicon from "../assets/Allpd-icon/all.png";
@@ -10,16 +12,18 @@ import Plus from "../assets/Allpd-icon/Icon Plus.svg";
 import Minus from "../assets/Allpd-icon/Icon Minus.svg";
 import Buy from "../assets/Allpd-icon/Buy.svg";
 
-const AllproductPage = () => {
+const AllProductPage = () => {
+  const { addToCart, removeFromCart, cartItems } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     // Simulating fetching data from an API
+    //change to function
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://6684bb4c56e7503d1ae0f994.mockapi.io/coffee/allproduct"
+          `https://6684bb4c56e7503d1ae0f994.mockapi.io/coffee/allproduct`
         );
         setProducts(response.data);
       } catch (error) {
@@ -38,6 +42,11 @@ const AllproductPage = () => {
       return products;
     }
     return products.filter((product) => product.categoriesName === filter);
+  };
+
+  const getProductQuantity = (productId) => {
+    const product = cartItems.find((item) => item.id === productId);
+    return product ? product.quantity : 0;
   };
 
   const filteredProducts = getFilteredProducts();
@@ -121,11 +130,13 @@ const AllproductPage = () => {
                   <div className="flex justify-between text-[22px]">
                     <h3>{product.productName}</h3>
                     <div>
-                      <img
-                        src={Buy}
-                        className="w-6 h-6 cursor-pointer"
-                        alt="Buy"
-                      />
+                      <Link to="/cart">
+                        <img
+                          src={Buy}
+                          className="w-6 h-6 cursor-pointer"
+                          alt="Buy"
+                        />
+                      </Link>
                     </div>
                   </div>
                   <div className="flex-1 text-[14px] text-[#979797]">
@@ -143,14 +154,18 @@ const AllproductPage = () => {
                     <div className="flex items-center gap-2">
                       <img
                         src={Minus}
-                        className="w-6 h-6 cursor-grab"
+                        className="w-6 h-6 cursor-pointer"
                         alt="Minus"
+                        onClick={() => removeFromCart(product.id)}
                       />
-                      <h3 className="text-[18px]">0</h3>
+                      <h3 className="text-[18px]">
+                        {getProductQuantity(product.id)}
+                      </h3>
                       <img
                         src={Plus}
-                        className="w-6 h-6 cursor-grab"
+                        className="w-6 h-6 cursor-pointer"
                         alt="Plus"
+                        onClick={() => addToCart(product)}
                       />
                     </div>
                   </div>
@@ -165,4 +180,4 @@ const AllproductPage = () => {
   );
 };
 
-export default AllproductPage;
+export default AllProductPage;

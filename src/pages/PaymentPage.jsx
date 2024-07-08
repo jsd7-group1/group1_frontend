@@ -5,6 +5,7 @@ import Americano from "../assets/allpd-images/americano.jpg"
 import Darkchoc from '../assets/allpd-images/darkchoc.jpg'
 import Malty from '../assets/allpd-images/maltydelight.jpg'
 import QRcode from '../assets/images/payment/QR.jpg'
+import NavBar from '../components/Navbar';
 
 const MockItem = [
   {
@@ -58,6 +59,7 @@ const PaymentPage = () => {
   }, [items]);
   return (
       <div className="mx-auto md:h-screen">
+        <NavBar />
         <section className="bg-[#FFF9F0] md:p-12 border-t-2 md:h-auto" >
           <div className="flex flex-col rounded-3xl md:p-4 p-4  bg-[#e5dfd6] md:flex-1  shadow-xl shadow-[#4E4637] ">
             <h2 className="text-center md:text-start md:pl-4 md:pb-4 font-bold text-4xl md:border-b-2 border-[#897979]">

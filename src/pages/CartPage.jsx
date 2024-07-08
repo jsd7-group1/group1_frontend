@@ -1,120 +1,76 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { CartContext } from '../context/CartContext';
 import Footer from '../components/Footer';
 import Plus from "../assets/Allpd-icon/Icon Plus.svg";
 import Minus from "../assets/Allpd-icon/Icon Minus.svg";
+import NavBar from '../components/Navbar';
 
 const CartPage = () => {
-  const [items, setItems] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { cartItems, addToCart, removeFromCart, deleteFromCart } = useContext(CartContext);
   const [vat, setVat] = useState(0);
   const [orderTotal, setOrderTotal] = useState(0);
   const [purchaseDate, setPurchaseDate] = useState('');
 
   useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        const response = await axios.get('https://6684bb4c56e7503d1ae0f994.mockapi.io/coffee/cart');
-        setItems(response.data);
-      } catch (error) {
-        console.error('Error fetching cart items:', error);
-      }
-    };
-
-    fetchCartItems();
-  }, []);
-
-  useEffect(() => {
-    const newTotal = calculateTotal(items);
+    const newTotal = calculateTotal(cartItems);
     const newVat = newTotal * 0.07;
     const newOrderTotal = newTotal + newVat;
 
-    setTotal(newTotal);
     setVat(newVat);
     setOrderTotal(newOrderTotal);
     const currentDate = new Date();
     setPurchaseDate(currentDate.toLocaleDateString());
-  }, [items]);
-
-  const deleteItem = async (itemID) => {
-    try {
-      await axios.delete(`https://6684bb4c56e7503d1ae0f994.mockapi.io/coffee/cart/${itemID}`);
-      setItems(items.filter(item => item.id !== itemID));
-    } catch (error) {
-      console.error('Error deleting item:', error);
-    }
-  };
+  }, [cartItems]);
 
   const calculateTotal = (items) => {
     return items.reduce((total, item) => total + parseFloat(item.salePrice) * item.quantity, 0);
   };
 
-  const incrementQuantity = async (itemID) => {
-    const updatedItems = items.map(item => item.id === itemID ? { ...item, quantity: item.quantity + 1 } : item);
-    setItems(updatedItems);
-
-    try {
-      await axios.put(`https://6684bb4c56e7503d1ae0f994.mockapi.io/coffee/cart/${itemID}`, { quantity: updatedItems.find(item => item.id === itemID).quantity });
-    } catch (error) {
-      console.error('Error updating quantity:', error);
-    }
-  };
-
-  const decrementQuantity = async (itemID) => {
-    const updatedItems = items.map(item => item.id === itemID && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item);
-    setItems(updatedItems);
-
-    try {
-      await axios.put(`https://6684bb4c56e7503d1ae0f994.mockapi.io/coffee/cart/${itemID}`, { quantity: updatedItems.find(item => item.id === itemID).quantity });
-    } catch (error) {
-      console.error('Error updating quantity:', error);
-    }
-  };
-
   return (
     <div className='md:flex flex-col md:h-screen '>
-      <section className="md:p-[72px]  bg-[#e5dfd6]  ">
+      <NavBar />
+      <section className="md:p-[72px] bg-[#e5dfd6]">
         <div className="w-full bg-[#FFF9F0] md:px-10 md:py-8 p-6 rounded-3xl shadow-2xl shadow-[#897979]">
           <div className="pb-8 flex justify-center md:inline-block">
-            <h1 className="font-semibold text-2xl  md:text-4xl ">Shopping Cart</h1>
+            <h1 className="font-semibold text-2xl md:text-4xl">Shopping Cart</h1>
           </div>
           <div className='md:overflow-y'>
-            <div className="md:flex md:mt-10 md:mb-5 border-b-4  hidden">
+            <div className="md:flex md:mt-10 md:mb-5 border-b-4 hidden">
               <h3 className="font-bold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
-              <h3 className="font-bold text-center text-gray-600 text-xs uppercase w-1/5 r">Quantity</h3>
+              <h3 className="font-bold text-center text-gray-600 text-xs uppercase w-1/5">Quantity</h3>
               <h3 className="font-bold text-center text-gray-600 text-xs uppercase w-1/5">Price</h3>
               <h3 className="font-bold text-center text-gray-600 text-xs uppercase w-1/5">Total</h3>
             </div>
-            {items.map(item => (
+            {cartItems.map(item => (
               <div key={item.id} className="flex items-center md:bg-[#FFF9F0] bg-[#e5dfd6] hover:bg-gray-100 -mx-8 px-6 py-5 border-b-2">
                 <div className="flex w-2/5">
                   <div className="w-20">
                     <img className="h-24" src={item.imgUrl} alt="" />
                   </div>
-                  <div className="flex flex-col  ml-4 flex-grow">
+                  <div className="flex flex-col ml-4 flex-grow">
                     <span className="font-bold text-sm">{item.name}</span>
                     <span className="text-red-500 text-xs">TYPE: {item.categoriesName}</span>
                   </div>
                 </div>
                 <div className="flex justify-center w-1/5">
-                  <img src={Minus} alt="minus" onClick={() => decrementQuantity(item.id)} />
+                  <img src={Minus} alt="minus" onClick={() => removeFromCart(item.id)} />
                   <input className="mx-2 border text-center w-8" type="text" value={item.quantity} readOnly />
-                  <img src={Plus} alt="plus" onClick={() => incrementQuantity(item.id)} />
+                  <img src={Plus} alt="plus" onClick={() => addToCart(item)} />
                 </div>
                 <span className="text-center w-1/5 font-semibold text-sm">${item.salePrice}</span>
                 <span className="text-center w-1/5 font-semibold text-sm">${(parseFloat(item.salePrice) * item.quantity).toFixed(2)}</span>
-                <button onClick={() => deleteItem(item.id)} className='bg-red-500  text-xl font-bold rounded-md py-10 md:px-[3px] px-2'>–</button>
+                <button onClick={() => deleteFromCart(item.id)} className='bg-red-500 text-xl font-bold rounded-md py-10 md:px-[3px] px-2'>–</button>
               </div>
             ))}
           </div>
-          <div className="md:p-12 flex justify-between  w-full">
+          <div className="md:p-12 flex justify-between w-full">
             <Link to="/allProduct" className="hidden md:inline-block w-1/2">
-              <span className='text-red-500 hover:text-red-700 font-bold'>⇦Continue Shopping</span>
+              <span className='text-red-500 hover:text-red-700 font-bold'>⇦ Continue Shopping</span>
             </Link>
-            <div className="md:p-1 md:w-1/2 w-full ">
+            <div className="md:p-1 md:w-1/2 w-full">
               <div className="md:flex md:justify-end items-center md:mt-8 mt-2 flex justify-between">
-                <span className=" text-gray-600 mr-4">Vat(7%):</span>
+                <span className="text-gray-600 mr-4">Vat (7%):</span>
                 <span className="font-bold">${vat.toFixed(2)}</span>
               </div>
               <div className="md:flex md:justify-end items-center md:mt-8 mt-2 flex justify-between">
@@ -125,8 +81,8 @@ const CartPage = () => {
                 <span className="text-gray-600 mr-4">Purchase Date:</span>
                 <span className="font-bold">{purchaseDate}</span>
               </div>
-              <Link to="/payment" className="md:flex md:justify-end md:mt-8 mt-8 ">
-                <button className="md:px-12 md:py-4 p-4 rounded-md text-white bg-[#897979]  hover:bg-white  hover:text-[#897979] md:w-1/2 w-full text-xl">CHECKOUT</button>
+              <Link to="/payment" className="md:flex md:justify-end md:mt-8 mt-8">
+                <button className="md:px-12 md:py-4 p-4 rounded-md text-white bg-[#897979] hover:bg-white hover:text-[#897979] md:w-1/2 w-full text-xl">CHECKOUT</button>
               </Link>
             </div>
           </div>
