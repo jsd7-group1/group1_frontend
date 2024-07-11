@@ -5,26 +5,63 @@ import Footer from '../components/Footer';
 import Plus from "../assets/Allpd-icon/Icon Plus.svg";
 import Minus from "../assets/Allpd-icon/Icon Minus.svg";
 import NavBar from '../components/Navbar';
+import axios from 'axios';
+import { fetchUserOrder, deleteProductFromCart } from '../services/orderService';
+
+// token จากการ LogIN ผ่าน PostMan
 
 const CartPage = () => {
   const { cartItems, addToCart, removeFromCart, deleteFromCart } = useContext(CartContext);
   const [vat, setVat] = useState(0);
   const [orderTotal, setOrderTotal] = useState(0);
   const [purchaseDate, setPurchaseDate] = useState('');
+  const [order,setOrder] = useState([])
 
   useEffect(() => {
-    const newTotal = calculateTotal(cartItems);
-    const newVat = newTotal * 0.07;
-    const newOrderTotal = newTotal + newVat;
+      const fetchData = async () =>{
+        try {
+          const orderData = await fetchUserOrder();
+          setOrder(orderData);
+        } catch (error) {
+          console.log("Error fetching data",error);
+        }
+      }
+      fetchData();
+  },[order]);
 
-    setVat(newVat);
-    setOrderTotal(newOrderTotal);
-    const currentDate = new Date();
-    setPurchaseDate(currentDate.toLocaleDateString());
-  }, [cartItems]);
 
-  const calculateTotal = (items) => {
-    return items.reduce((total, item) => total + parseFloat(item.salePrice) * item.quantity, 0);
+
+  useEffect(() => {
+    if (order.length > 0) {
+      const newTotal = order.reduce((total, ord) => {
+        return total + ord.orderDetails.reduce((subTotal, detail) => {
+          return subTotal + (detail.price * detail.quantity);
+        }, 0);
+      }, 0);
+      const newVat = newTotal * 0.07;
+      const newOrderTotal = newTotal + newVat;
+
+      setVat(newVat);
+      setOrderTotal(newOrderTotal);
+      const currentDate = new Date();
+      setPurchaseDate(currentDate.toLocaleDateString());
+    }
+  }, [order]);
+
+  const deleteFromCarts = async (orderID, productID) => {
+    try {
+      await deleteProductFromCart(orderID, productID); 
+      setOrder(prevOrder =>
+        prevOrder.map(ord =>
+          ord._id === orderID
+            ? { ...ord, orderDetails: ord.orderDetails.filter(item => item.productID !== productID) }
+            : ord
+        )
+      );
+      console.log("Product deleted successfully");
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
   };
 
   return (
@@ -42,27 +79,28 @@ const CartPage = () => {
               <h3 className="font-bold text-center text-gray-600 text-xs uppercase w-1/5">Price</h3>
               <h3 className="font-bold text-center text-gray-600 text-xs uppercase w-1/5">Total</h3>
             </div>
-            {cartItems.map(item => (
-              <div key={item.id} className="flex items-center md:bg-[#FFF9F0] bg-[#e5dfd6] hover:bg-gray-100 -mx-8 px-6 py-5 border-b-2">
-                <div className="flex w-2/5">
-                  <div className="w-20">
-                    <img className="h-24" src={item.imgUrl} alt="" />
+            {order.map(ord=> (
+              ord.orderDetails.map(item => (
+                <div key={item.productID} className="flex items-center md:bg-[#FFF9F0] bg-[#e5dfd6] hover:bg-gray-100 -mx-8 px-6 py-5 border-b-2">
+                  <div className="flex w-2/5">
+                    <div className="w-20">
+                      <img className="h-24" src={item.imageUrl} alt="" />
+                    </div>
+                    <div className="flex flex-col ml-4 flex-grow">
+                      <span className="font-bold text-sm">{item.productName}</span>
+                      <span className="text-red-500 text-xs">TYPE: {item.type}</span>
+                    </div>
                   </div>
-                  <div className="flex flex-col ml-4 flex-grow">
-                    <span className="font-bold text-sm">{item.name}</span>
-                    <span className="text-red-500 text-xs">TYPE: {item.categoriesName}</span>
+                  <div className="flex justify-center w-1/5">
+                    <img src={Minus} alt="minus" onClick={() => removeFromCart(item.id)} />
+                    <input className="mx-2 border text-center w-8" type="text" value={item.quantity} readOnly />
+                    <img src={Plus} alt="plus" onClick={() => addToCart(item)} />
                   </div>
+                  <span className="text-center w-1/5 font-semibold text-sm">${item.price}</span>
+                  <span className="text-center w-1/5 font-semibold text-sm">${(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
+                  <button onClick={() => deleteFromCarts(ord.orderID, item.productID)} className='bg-red-500 text-xl font-bold rounded-md py-10 md:px-[3px] px-2'>–</button>
                 </div>
-                <div className="flex justify-center w-1/5">
-                  <img src={Minus} alt="minus" onClick={() => removeFromCart(item.id)} />
-                  <input className="mx-2 border text-center w-8" type="text" value={item.quantity} readOnly />
-                  <img src={Plus} alt="plus" onClick={() => addToCart(item)} />
-                </div>
-                <span className="text-center w-1/5 font-semibold text-sm">${item.salePrice}</span>
-                <span className="text-center w-1/5 font-semibold text-sm">${(parseFloat(item.salePrice) * item.quantity).toFixed(2)}</span>
-                <button onClick={() => deleteFromCart(item.id)} className='bg-red-500 text-xl font-bold rounded-md py-10 md:px-[3px] px-2'>–</button>
-              </div>
-            ))}
+            ))))}
           </div>
           <div className="md:p-12 flex justify-between w-full">
             <Link to="/allProduct" className="hidden md:inline-block w-1/2">
