@@ -23,28 +23,7 @@ function LoginPage() {
     });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const validationErrors = {};
-  //   if (!formData.email.trim()) {
-  //     validationErrors.email = "Email is required";
-  //   } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-  //     validationErrors.email = "Email is not valid";
-  //   }
 
-  //   if (!formData.password.trim()) {
-  //     validationErrors.password = "Password is required!";
-  //   } else if (formData.password.length < 8) {
-  //     validationErrors.password = "Password should be at least 8 character!";
-  //   }
-
-  //   setErrors(validationErrors);
-
-  //   if (Object.keys(validationErrors).length === 0) {
-  //     alert("Login successfully ");
-  //     navigate("/home");
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = {};
@@ -56,9 +35,7 @@ function LoginPage() {
 
     if (!formData.password.trim()) {
       validationErrors.password = "Password is required!";
-    } else if (formData.password.length < 8) {
-      validationErrors.password = "Password should be at least 8 character!";
-    }
+    } 
 
     setErrors(validationErrors);
 

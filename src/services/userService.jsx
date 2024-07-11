@@ -9,12 +9,26 @@ const axiosInstance = axios.create({
 const loginService = async (email,password) => {
     try {
         const response = await axiosInstance.post("/login",{email,password});
-        const { access_token } = response.data;
-        localStorage.setItem('token', access_token);
+        localStorage.setItem('token', response.data);
         return response.data
     } catch (error) {
         console.log("Login Error",error);
         throw error
     }
+};
+
+const newRegister = async (email,fullName,password,confirmPassword) => {
+    try {
+        const response = await axiosInstance.post("/register",{
+            email,
+            fullName,
+            password,
+            confirmPassword,
+        });
+        await loginService(email,password);
+    } catch (error) {
+        console.log("Register Unsuccessfull",error);
+        throw error
+    }
 }
-export { loginService }
+export { loginService, newRegister };
