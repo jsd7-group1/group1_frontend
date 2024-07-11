@@ -2,12 +2,12 @@ import axios from "axios";
 
 const baseURL = "http://localhost:8081/orders"
 // log-in ผ่าน PostMan
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGUyNzYzMGU2NmQzYTc4MDAxNjE3NCIsImVtYWlsIjoidGVzdDZAZ21haWwuY29tIiwiaWF0IjoxNzIwNjc4NjU4LCJleHAiOjE3MjA3NjUwNTh9.8te_y-NDqZPLASBwyGAGjL5pGi1gjDegAniITuLP1vQ"
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGUyNzYzMGU2NmQzYTc4MDAxNjE3NCIsImVtYWlsIjoidGVzdDZAZ21haWwuY29tIiwiaWF0IjoxNzIwNjc4NjU4LCJleHAiOjE3MjA3NjUwNTh9.8te_y-NDqZPLASBwyGAGjL5pGi1gjDegAniITuLP1vQ"
 
 const axiosInstance = axios.create({
     baseURL,
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     }
 });
 
