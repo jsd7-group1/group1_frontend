@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { loginService } from "../services/userService";
 
 function LoginPage() {
   
@@ -22,7 +23,29 @@ function LoginPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const validationErrors = {};
+  //   if (!formData.email.trim()) {
+  //     validationErrors.email = "Email is required";
+  //   } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+  //     validationErrors.email = "Email is not valid";
+  //   }
+
+  //   if (!formData.password.trim()) {
+  //     validationErrors.password = "Password is required!";
+  //   } else if (formData.password.length < 8) {
+  //     validationErrors.password = "Password should be at least 8 character!";
+  //   }
+
+  //   setErrors(validationErrors);
+
+  //   if (Object.keys(validationErrors).length === 0) {
+  //     alert("Login successfully ");
+  //     navigate("/home");
+  //   }
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = {};
     if (!formData.email.trim()) {
@@ -40,8 +63,13 @@ function LoginPage() {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      alert("Login successfully ");
-      navigate("/home");
+      try {
+        await loginService( formData.email, formData.password );
+        console.log("Login successful");
+        navigate("/")
+      } catch (error) {
+        
+      }
     }
   };
 
