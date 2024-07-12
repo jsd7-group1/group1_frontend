@@ -18,11 +18,12 @@ const fetchProduct = async () => {
 
 const productByCategory = async () =>{
     try {
-        const response = await axiosInstance.get(`/${categoryID}`);
+        const response = await axiosInstance.get(`/:categoryID`);
         return response.data;
     } catch (error) {
         console.log("Error fetching product",error);
         throw error
     }
 }
+
 export { fetchProduct, productByCategory }

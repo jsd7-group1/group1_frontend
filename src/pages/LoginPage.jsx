@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import { loginService } from "../services/userService";
 
 function LoginPage() {
-  
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -45,7 +45,8 @@ function LoginPage() {
         console.log("Login successful");
         navigate("/")
       } catch (error) {
-        console.log("Login failed", error);
+        console.log(error);
+        throw error;
       }
     }
   };
