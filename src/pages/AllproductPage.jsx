@@ -19,39 +19,42 @@ const AllProductPage = () => {
   const [filter, setFilter] = useState("all");
 
 
-  // useEffect(()=>{
-  //   const fetchData = async () =>{
-  //     try {
-  //       const response = await fetchProduct()
-  //       console.log(response);
-  //       setProducts(response.data);
-  //     } catch (error) {
-  //       console.log("Error fetching data",error);
-  //     }
-  //   }
-  //   fetchData();
-  // },[]);
-
-  useEffect(() => {
-    const fetchData = async () => {
+  useEffect(()=>{
+    const fetchData = async () =>{
       try {
-        if (filter === "all") {
-          const response = await fetchProduct();
-          setProducts(response.data);
-        } else {
-          const response = await productByCategory(filter);
-          setProducts(response.data);
-        }
+        const response = await fetchProduct()
+        console.log(response);
+        setProducts(response.data);
       } catch (error) {
-        console.log("Error fetching data", error);
+        console.log("Error fetching data",error);
       }
-    };
+    }
     fetchData();
-  }, [filter]);
+  },[]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       if (filter === "all") {
+  //         const response = await fetchProduct();
+  //         setProducts(response.data);
+  //       } else {
+  //         const response = await productByCategory(filter);
+  //         setProducts(response.data);
+  //       }
+  //     } catch (error) {
+  //       console.log("Error fetching data", error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [filter]);
 
   const handleFilterChange = (category) => {
     setFilter(category);
   };
+  const filteredProducts = filter === "all"
+  ? products
+  : products.filter((product) => product.categoryID.categoryName === filter);
 
   return (
     <div className="h-screen">
@@ -79,28 +82,28 @@ const AllProductPage = () => {
           <div className="flex flex-col">
             <article className="text-center flex align-item-center justify-center gap-[18px] lg:gap-[268px] pb-10 text-[16px] lg:text-[20px] text-[#887979]">
               <button
-                onClick={() => handleFilterChange("")}
+                onClick={() => handleFilterChange("all")}
                 className="flex items-center justify-center rounded-[10px] shadow-2xl bg-[#726464] w-[192px] h-[58px] text-[#000000] hover:bg-[#F5F5F5]"
               >
                 <p className="text-[22px] px-1">All</p>
                 <img src={Allicon} className="w-10 h-10" alt="All" />
               </button>
               <button
-                onClick={() => handleFilterChange("668f52e60156ac98cf5afa70")}
+                onClick={() => handleFilterChange("bakery")}
                 className="flex items-center justify-center rounded-[10px] shadow-2xl bg-[#726464] w-[192px] h-[58px] text-[#000000] hover:bg-[#F5F5F5]"
               >
                 <p className="text-[22px] px-1">Bakery</p>
                 <img src={Breadicon} className="w-10 h-10" alt="Bakery" />
               </button>
               <button
-                onClick={() => handleFilterChange("668e8a824bf79e1dc8a0ab8b")}
+                onClick={() => handleFilterChange("hot")}
                 className="flex items-center justify-center rounded-[10px] shadow-2xl bg-[#726464] w-[192px] h-[58px] text-[#000000] hover:bg-[#F5F5F5]"
               >
                 <p className="text-[22px] px-1">Hot Coffees</p>
                 <img src={Hoticon} className="w-10 h-10" alt="Hot Coffees" />
               </button>
               <button
-                onClick={() => handleFilterChange("668f539266cd7f5b8b30ea61")}
+                onClick={() => handleFilterChange("cold")}
                 className="flex items-center justify-center rounded-[10px] shadow-2xl bg-[#726464] w-[192px] h-[58px] text-[#000000] hover:bg-[#F5F5F5]"
               >
                 <p className="text-[22px] px-1">Cold Coffees</p>
@@ -111,7 +114,7 @@ const AllProductPage = () => {
         </header>
 
         <section className="flex flex-row gap-[10px] px-[10px] flex-wrap">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div
               key={product._id}
               className="w-full lg:w-[calc((100vw_-_30px)_/_2)] 2xl:w-[calc((100vw_-_60px)_/_3)]"
@@ -153,7 +156,7 @@ const AllProductPage = () => {
                         {product.price}.-
                       </h3>
                     </div>
-                    {/* <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2">
                       <img
                         src={Minus}
                         className="w-6 h-6 cursor-pointer"
@@ -169,7 +172,7 @@ const AllProductPage = () => {
                         alt="Plus"
                         onClick={() => addToCart(product)}
                       />
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
