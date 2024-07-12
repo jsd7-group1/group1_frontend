@@ -1,33 +1,59 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
 import QRcode from '../assets/images/payment/QR.jpg'
 import NavBar from '../components/Navbar';
+import { fetchUserOrder } from '../services/orderService';
 
 
 const PaymentPage = () => {
-  const [items,setItems] = useState(MockItem);
-  const [total,setTotal] = useState(0);
+  const [order,setOrder] = useState([]);
   const [vat,setVat] = useState(0);
   const [orderTotal,setOrderTotal] = useState(0);
   const [purchaseDate,setPurchaseDate] = useState('');
   const [payment,SetPayment] = useState('card')
 
-  const calculateTotal = (item) => {
-    return item.reduce((total,item)=>total + item.price * item.quantity,0)
-   }
+  useEffect(() => {
+    const fetchData = async () =>{
+      try {
+        const orderData = await fetchUserOrder();
+        setOrder(orderData);
+      } catch (error) {
+        console.log("Error fetching data",error);
+      }
+    }
+    fetchData();
+  },[order]);
 
   useEffect(() => {
-    const newTotal = calculateTotal(items);
-    const newVat = newTotal * 0.07;
-    const newOrderTotal = newTotal + newVat;
+    if (order.length > 0) {
+      const newTotal = order.reduce((total, ord) => {
+        return total + ord.orderDetails.reduce((subTotal, detail) => {
+          return subTotal + (detail.price * detail.quantity);
+        }, 0);
+      }, 0);
+      const newVat = newTotal * 0.07;
+      const newOrderTotal = newTotal + newVat;
 
-    setTotal(newTotal);
-    setVat(newVat);
-    setOrderTotal(newOrderTotal);
-    const currentDate = new Date();
-    setPurchaseDate(currentDate.toLocaleDateString());
-  }, [items]);
+      setVat(newVat);
+      setOrderTotal(newOrderTotal);
+      const currentDate = new Date();
+      setPurchaseDate(currentDate.toLocaleDateString());
+    }
+  }, [order]);
+
+  // useEffect(() => {
+  //   const newTotal = calculateTotal(items);
+  //   const newVat = newTotal * 0.07;
+  //   const newOrderTotal = newTotal + newVat;
+
+  //   setTotal(newTotal);
+  //   setVat(newVat);
+  //   setOrderTotal(newOrderTotal);
+  //   const currentDate = new Date();
+  //   setPurchaseDate(currentDate.toLocaleDateString());
+  // }, [items]);
   return (
       <div className="mx-auto md:h-screen">
         <NavBar />

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { newRegister } from "../services/userService";
 
 function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ function RegisterPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = {};
 
@@ -48,19 +49,30 @@ function RegisterPage() {
       validationErrors.confirmPassword = "Password not match!";
     }
 
-    if (
-      formData.file &&
-      !["image/jpeg", "image/png"].includes(formData.file.type)
-    ) {
-      validationErrors.file =
-        "Invalid file type! Only JPEG and PNG are allowed.";
-    }
+    // if (
+    //   formData.file &&
+    //   !["image/jpeg", "image/png"].includes(formData.file.type)
+    // ) {
+    //   validationErrors.file =
+    //     "Invalid file type! Only JPEG and PNG are allowed.";
+    // }
 
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      alert("Register successfully ");
-      navigate("/home");
+      try {
+        await newRegister(
+          formData.email,
+          formData.fullName,
+          formData.password,
+          formData.confirmPassword
+        );
+        alert("Register Successfully!");
+        navigate("/");
+      } catch (error) {
+        console.log("Register Error",error);
+        setErrors({ form: "Registration failed. Please try again." });
+      }
     }
   };
 
