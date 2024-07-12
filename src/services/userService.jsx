@@ -9,7 +9,8 @@ const axiosInstance = axios.create({
 const loginService = async (email,password) => {
     try {
         const response = await axiosInstance.post("/login",{email,password});
-        localStorage.setItem('token', response.data);
+        const token = response.data.access_token
+        localStorage.setItem('token',token);
         return response.data
     } catch (error) {
         console.log("Login Error",error);

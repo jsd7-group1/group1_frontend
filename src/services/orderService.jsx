@@ -11,7 +11,12 @@ const axiosInstance = axios.create({
 
 const fetchUserOrder = async () => {
     try {
-        const response = await axiosInstance.get('/user');
+        const token = localStorage.getItem('token');
+        const response = await axiosInstance.get('/user',{
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data;
     } catch (error) {
         console.log("Error fetching data",error)
