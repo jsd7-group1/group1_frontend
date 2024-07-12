@@ -19,39 +19,42 @@ const AllProductPage = () => {
   const [filter, setFilter] = useState("all");
 
 
-  // useEffect(()=>{
-  //   const fetchData = async () =>{
-  //     try {
-  //       const response = await fetchProduct()
-  //       console.log(response);
-  //       setProducts(response.data);
-  //     } catch (error) {
-  //       console.log("Error fetching data",error);
-  //     }
-  //   }
-  //   fetchData();
-  // },[]);
-
-  useEffect(() => {
-    const fetchData = async () => {
+  useEffect(()=>{
+    const fetchData = async () =>{
       try {
-        if (filter === "all") {
-          const response = await fetchProduct();
-          setProducts(response.data);
-        } else {
-          const response = await productByCategory(filter);
-          setProducts(response.data);
-        }
+        const response = await fetchProduct()
+        console.log(response);
+        setProducts(response.data);
       } catch (error) {
-        console.log("Error fetching data", error);
+        console.log("Error fetching data",error);
       }
-    };
+    }
     fetchData();
-  }, [filter]);
+  },[]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       if (filter === "all") {
+  //         const response = await fetchProduct();
+  //         setProducts(response.data);
+  //       } else {
+  //         const response = await productByCategory(filter);
+  //         setProducts(response.data);
+  //       }
+  //     } catch (error) {
+  //       console.log("Error fetching data", error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [filter]);
 
   const handleFilterChange = (categoryID) => {
     setFilter(categoryID);
   };
+  const filteredProducts = filter === "all"
+  ? products
+  : products.filter((product) => product.categoryID.categoryName === filter);
 
   return (
     <div className="h-screen">
@@ -100,7 +103,7 @@ const AllProductPage = () => {
                 <img src={Hoticon} className="w-10 h-10" alt="Hot Coffees" />
               </button>
               <button
-                onClick={() => handleFilterChange("hot")}
+                onClick={() => handleFilterChange("cold")}
                 className="flex items-center justify-center rounded-[10px] shadow-2xl bg-[#726464] w-[192px] h-[58px] text-[#000000] hover:bg-[#F5F5F5]"
               >
                 <p className="text-[22px] px-1">Cold Coffees</p>
@@ -111,7 +114,7 @@ const AllProductPage = () => {
         </header>
 
         <section className="flex flex-row gap-[10px] px-[10px] flex-wrap">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div
               key={product._id}
               className="w-full lg:w-[calc((100vw_-_30px)_/_2)] 2xl:w-[calc((100vw_-_60px)_/_3)]"
