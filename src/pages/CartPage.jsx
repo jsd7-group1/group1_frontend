@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 import Plus from "../assets/Allpd-icon/Icon Plus.svg";
 import Minus from "../assets/Allpd-icon/Icon Minus.svg";
 import NavBar from '../components/Navbar';
-import axios from 'axios';
 import { fetchUserOrder, deleteProductFromCart } from '../services/orderService';
 
 // token จากการ LogIN ผ่าน PostMan
