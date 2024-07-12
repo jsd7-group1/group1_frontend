@@ -11,10 +11,10 @@ import Hoticon from "../assets/Allpd-icon/hot.png";
 import Plus from "../assets/Allpd-icon/Icon Plus.svg";
 import Minus from "../assets/Allpd-icon/Icon Minus.svg";
 import Buy from "../assets/Allpd-icon/Buy.svg";
-import { fetchProduct, productByCategory } from "../services/productService";
+import { fetchProduct, addToCart } from "../services/productService";
 
 const AllProductPage = () => {
-  const { addToCart, removeFromCart, cartItems } = useContext(CartContext);
+  // const { addToCart, removeFromCart, cartItems } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState("all");
 
@@ -52,9 +52,21 @@ const AllProductPage = () => {
   const handleFilterChange = (category) => {
     setFilter(category);
   };
+
   const filteredProducts = filter === "all"
   ? products
   : products.filter((product) => product.categoryID.categoryName === filter);
+
+  const handleAddToCart = async (productID) => {
+    try {
+      const response = await addToCart(productID);
+      console.log(response);
+      alert("Add successfully!")
+    } catch (error) {
+      console.log("Add product failed",error);
+      throw error
+    }
+  };
 
   return (
     <div className="h-screen">
@@ -135,13 +147,14 @@ const AllProductPage = () => {
                   <div className="flex justify-between text-[22px]">
                     <h3>{product.productName}</h3>
                     <div>
-                      <Link to="/cart">
+                      <span>
                         <img
                           src={Buy}
                           className="w-6 h-6 cursor-pointer"
                           alt="Buy"
+                          onClick={()=> handleAddToCart(product._id)}
                         />
-                      </Link>
+                      </span>
                     </div>
                   </div>
                   <div className="flex-1 text-[14px] text-[#979797]">
@@ -156,7 +169,7 @@ const AllProductPage = () => {
                         {product.price}.-
                       </h3>
                     </div>
-                    <div className="flex items-center gap-2">
+                    {/* <div className="flex items-center gap-2">
                       <img
                         src={Minus}
                         className="w-6 h-6 cursor-pointer"
@@ -172,7 +185,7 @@ const AllProductPage = () => {
                         alt="Plus"
                         onClick={() => addToCart(product)}
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

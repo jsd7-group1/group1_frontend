@@ -25,4 +25,22 @@ const productByCategory = async () =>{
         throw error
     }
 }
-export { fetchProduct, productByCategory }
+
+const addToCart = async (productID) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axiosInstance.post("/add-to-cart",
+            {productID},
+            {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+        return response;
+    } catch (error) {
+        console.log("Error add product",error);
+        throw error
+    }
+}
+export { fetchProduct, productByCategory, addToCart }

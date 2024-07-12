@@ -32,4 +32,5 @@ const newRegister = async (email,fullName,password,confirmPassword) => {
         throw error
     }
 }
+
 export { loginService, newRegister };
