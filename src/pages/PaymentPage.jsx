@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import QRcode from '../assets/images/payment/QR.jpg'
 import NavBar from '../components/Navbar';
-import { fetchUserOrder } from '../services/orderService';
+import { fetchUserOrder, checkoutOrder } from '../services/orderService';
 
 
 const PaymentPage = () => {
@@ -13,6 +13,7 @@ const PaymentPage = () => {
   const [orderTotal,setOrderTotal] = useState(0);
   const [purchaseDate,setPurchaseDate] = useState('');
   const [payment,SetPayment] = useState('card')
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () =>{
@@ -42,6 +43,17 @@ const PaymentPage = () => {
       setPurchaseDate(currentDate.toLocaleDateString());
     }
   }, [order]);
+
+  const handleCheckout = async () => {
+    try {
+      const response = await checkoutOrder();
+      alert("Checkout success");
+      console.log(response);
+      navigate('/')
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // useEffect(() => {
   //   const newTotal = calculateTotal(items);
@@ -220,6 +232,7 @@ const PaymentPage = () => {
               </Link>
               <button
                 type="button"
+                onClick={handleCheckout}
                 className="px-6 py-4 bg-[#897979] rounded-md hover:bg-white hover:text-[#897979]  w-4/5 md:w-[49.50%] md:boder-2 text-white text-xl"
               >
                 Submit
