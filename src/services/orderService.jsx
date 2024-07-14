@@ -44,7 +44,7 @@ const deleteProductFromCart = async (orderID,productID) => {
     }
 };
 
-const checkoutOrder = async ({ vat, orderTotal, customerName, contact, address}) => {
+const checkoutOrder = async ({ vat, orderTotal, customerName, contact, zipcode, address}) => {
     try {
         const token = localStorage.getItem('token');
         const response = await axiosInstance.post('/checkout',{
@@ -52,6 +52,7 @@ const checkoutOrder = async ({ vat, orderTotal, customerName, contact, address})
             orderTotal,
             customerName,
             contact,
+            zipcode,
             address
         },{
             headers:{

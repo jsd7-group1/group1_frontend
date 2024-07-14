@@ -15,7 +15,11 @@ const PaymentPage = () => {
   const [payment,SetPayment] = useState('card');
   const [customerName,setCustomerName] = useState('');
   const [contact,setContact] = useState('');
-  const [address,setAdress] = useState('');
+  const [city,setCity] = useState('');
+  const [house,setHouse] = useState('');
+  const [note,setNote] = useState('');
+  const [zipcode,setZipcode] = useState('');
+  const [address,setAddress] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,12 +54,15 @@ const PaymentPage = () => {
   const handleCheckout = async (e) => {
     e.preventDefault();
     try {
+      setAddress({city,house,note});
+      const formattedAddress = `${address.house}, ${address.city}, ${address.note}`;
       const response = await checkoutOrder({
         vat,
-        orderTotal: orderTotal + vat,
+        orderTotal,
         customerName,
         contact,
-        address
+        zipcode,
+        address: formattedAddress
       });
       alert("Checkout success");
       console.log(response);
@@ -184,30 +191,30 @@ const PaymentPage = () => {
                         />
                         <input
                           type="text"
-                          value={address}
-                          onChange={e=> setAdress(e.target.value)}
-                          placeholder="City/District/Postcode/Subdistrict"
+                          value={city}
+                          onChange={e=> setCity(e.target.value)}
+                          placeholder="City/District/Subdistrict"
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
-                          placeholder="House No. ,Street Name"
-                          value={address}
-                          onChange={e=> setAdress(e.target.value)}
+                          placeholder="House No. ,Street Name, Unit/Floor"
+                          value={house}
+                          onChange={e=> setHouse(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
-                          placeholder="Unit/Floor"
-                          value={address}
-                          onChange={e=> setAdress(e.target.value)}
+                          placeholder="Zipcode"
+                          value={zipcode}
+                          onChange={e=> setZipcode(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <textarea
                           type="text"
                           placeholder="Additional note"
-                          value={address}
-                          onChange={e=> setAdress(e.target.value)}
+                          value={note}
+                          onChange={e=> setNote(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-3 px-4 py-3"
                         />
                       </div>
