@@ -19,7 +19,7 @@ const PaymentPage = () => {
   const [house,setHouse] = useState('');
   const [note,setNote] = useState('');
   const [zipcode,setZipcode] = useState('');
-  const [address,setAddress] = useState('');
+  // const [address,setAddress] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,16 +53,16 @@ const PaymentPage = () => {
 
   const handleCheckout = async (e) => {
     e.preventDefault();
+    const address = `${city}, ${house}, ${note}`;
+    console.log(address)
     try {
-      setAddress({city,house,note});
-      const formattedAddress = `${address.house}, ${address.city}, ${address.note}`;
       const response = await checkoutOrder({
         vat,
         orderTotal,
         customerName,
         contact,
         zipcode,
-        address: formattedAddress
+        address
       });
       alert("Checkout success");
       console.log(response);
@@ -172,7 +172,7 @@ const PaymentPage = () => {
 
               <div className="md:flex-col md:mt-2 md:w-1/2 md:items-end">
                   <div className='mb-2 md:bg-white rounded-md md:p-4  shadow-md shadow-[#A5AC99]'>
-                    <h3 className=' pb-2 text-xl font-bold'>ADRESS</h3>
+                    <h3 className=' pb-2 text-xl font-bold'>ADDRESS</h3>
                     <form className=" md:flex-col md:flex-1 ">
                       <div className="flex flex-col md:gap-1 gap-4">
                         <input
