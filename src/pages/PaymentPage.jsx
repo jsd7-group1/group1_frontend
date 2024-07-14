@@ -12,7 +12,10 @@ const PaymentPage = () => {
   const [vat,setVat] = useState(0);
   const [orderTotal,setOrderTotal] = useState(0);
   const [purchaseDate,setPurchaseDate] = useState('');
-  const [payment,SetPayment] = useState('card')
+  const [payment,SetPayment] = useState('card');
+  const [customerName,setCustomerName] = useState('');
+  const [contact,setContact] = useState('');
+  const [address,setAdress] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,9 +47,16 @@ const PaymentPage = () => {
     }
   }, [order]);
 
-  const handleCheckout = async () => {
+  const handleCheckout = async (e) => {
+    e.preventDefault();
     try {
-      const response = await checkoutOrder();
+      const response = await checkoutOrder({
+        vat,
+        orderTotal: orderTotal + vat,
+        customerName,
+        contact,
+        address
+      });
       alert("Checkout success");
       console.log(response);
       navigate('/')
@@ -55,17 +65,6 @@ const PaymentPage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const newTotal = calculateTotal(items);
-  //   const newVat = newTotal * 0.07;
-  //   const newOrderTotal = newTotal + newVat;
-
-  //   setTotal(newTotal);
-  //   setVat(newVat);
-  //   setOrderTotal(newOrderTotal);
-  //   const currentDate = new Date();
-  //   setPurchaseDate(currentDate.toLocaleDateString());
-  // }, [items]);
   return (
       <div className="mx-auto md:h-screen">
         <NavBar />
@@ -172,31 +171,43 @@ const PaymentPage = () => {
                         <input
                           type="text"
                           placeholder="Recipient's Name"
+                          value={customerName}
+                          onChange={(e)=> setCustomerName(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
                           placeholder="Phone Number"
+                          value={contact}
+                          onChange={(e)=> setContact(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
+                          value={address}
+                          onChange={e=> setAdress(e.target.value)}
                           placeholder="City/District/Postcode/Subdistrict"
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
                           placeholder="House No. ,Street Name"
+                          value={address}
+                          onChange={e=> setAdress(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
                           placeholder="Unit/Floor"
+                          value={address}
+                          onChange={e=> setAdress(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <textarea
                           type="text"
                           placeholder="Additional note"
+                          value={address}
+                          onChange={e=> setAdress(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-3 px-4 py-3"
                         />
                       </div>

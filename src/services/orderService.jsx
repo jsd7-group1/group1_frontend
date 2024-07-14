@@ -1,4 +1,5 @@
 import axios from "axios";
+import { contract } from "ionicons/icons";
 
 const baseURL = "http://localhost:8081/orders"
 
@@ -43,10 +44,16 @@ const deleteProductFromCart = async (orderID,productID) => {
     }
 };
 
-const checkoutOrder = async () => {
+const checkoutOrder = async ({ vat, orderTotal, customerName, contact, address}) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axiosInstance.post('/checkout',{},{
+        const response = await axiosInstance.post('/checkout',{
+            vat,
+            orderTotal,
+            customerName,
+            contact,
+            address
+        },{
             headers:{
                 Authorization: `Bearer ${token}`
             }
