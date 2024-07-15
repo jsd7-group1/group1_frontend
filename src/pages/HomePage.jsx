@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Herobg from "../assets/images/hero/herobackground.png";
+import GoogleGenerativeAIComponent from "../components/Chatbot";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ const HomePage = () => {
       <header>
         {/* Hero Background */}
         <section
-          className="flex flex-col min-h-screen bg-slate-800 bg-center bg-cover  bg-fixed bg-black/30"
+          className="flex flex-col min-h-screen bg-slate-800 bg-center bg-cover bg-fixed bg-black/30"
           style={{
             backgroundImage: `url(${Herobg})`,
           }}
@@ -53,6 +54,15 @@ const HomePage = () => {
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
       {/*END THE HERO SECTION*/}
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
+      {/*/////////////////////////////////*/}
+      {/*SPECIAL FEATURE SECTION*/}
+      {/*/////////////////////////////////*/}
+      <div className="container mx-auto mt-10">
+        <GoogleGenerativeAIComponent />
+      </div>
+      {/*/////////////////////////////////*/}
+      {/*END THE SPECIAL FEATURE SECTION*/}
+      {/*/////////////////////////////////*/}
       {/*/////////////////////////////////*/}
       {/*Product HIGHTLIGHTS Desktop SECTION*/}
       {/*/////////////////////////////////*/}
@@ -316,9 +326,9 @@ const HomePage = () => {
             </p>
             <div className="flex justify-center mt-10 md:justify-start gap-6">
               <Link to="/allProduct">
-              <div className="text-white bg-[#655050] font-medium  px-5 py-4 text-center hover:bg-white hover:text-[#655050] border-2 border-[#655050] hover:drop-shadow-md transition duration-300 ease-in-out">
-                Order Now ➜
-              </div>
+                <div className="text-white bg-[#655050] font-medium  px-5 py-4 text-center hover:bg-white hover:text-[#655050] border-2 border-[#655050] hover:drop-shadow-md transition duration-300 ease-in-out">
+                  Order Now ➜
+                </div>
               </Link>
               <a
                 href="#"
