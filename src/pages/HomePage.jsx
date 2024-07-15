@@ -119,6 +119,12 @@ const HomePage = () => {
       {/*Product HIGHLIGHTS Desktop SECTION*/}
       {/*/////////////////////////////////*/}
       <section className="hidden md:block container mx-auto mt-10">
+        <h1 className="text-center font-semibold text-xl pt-7 text-[#655050]">
+          OUR DRINKS
+        </h1>
+        <h2 className="text-center font-semibold text-2xl mb-6">
+          Check Out Some Of Them
+        </h2>
         <div className="flex justify-start space-x-4 ml-4 mb-6 select-none">
           <button
             onClick={() => filterProducts("all")}
