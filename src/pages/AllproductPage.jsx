@@ -166,7 +166,7 @@ const AllProductPage = () => {
                   <div className="flex justify-between items-center gap-1">
                     <div className="flex gap-2 text-[12px] font-bold">
                       <h3 className="text-[22px] pt-3 font-bold text-[#DD9776]">
-                        {product.price}.-
+                        ฿{product.price}.-
                       </h3>
                     </div>
                     {/* <div className="flex items-center gap-2">

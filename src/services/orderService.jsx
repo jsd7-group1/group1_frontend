@@ -1,7 +1,7 @@
 import axios from "axios";
 import { contract } from "ionicons/icons";
 
-const baseURL = "http://localhost:8081/orders"
+const baseURL = "https://group1-backend.onrender.com"
 
 const axiosInstance = axios.create({
     baseURL,
@@ -34,7 +34,7 @@ const deleteProductFromCart = async (orderID,productID) => {
             },
             data: {
                 orderID,
-                productID 
+                productID
             },
         });
         return response.data;
@@ -64,6 +64,42 @@ const checkoutOrder = async ({ vat, orderTotal, customerName, contact, zipcode, 
         console.log("Error checkout",error);
         throw error
     }
+};
+
+const increaseQuantity = async ({ orderID, productID }) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axiosInstance.patch('/increase',{
+            orderID,
+            productID,
+        },{
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return response;
+    } catch (error) {
+        console.log("Increase Error",error)
+        throw error
+    }
+};
+
+const decreaseQuantity = async ({ orderID, productID }) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axiosInstance.patch('/decrease',{
+            orderID,
+            productID,
+        },{
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return response;
+    } catch (error) {
+        console.log("Increase Error",error)
+        throw error
+    }
 }
 
-export { fetchUserOrder, deleteProductFromCart, checkoutOrder }
+export { fetchUserOrder, deleteProductFromCart, checkoutOrder, increaseQuantity, decreaseQuantity }
