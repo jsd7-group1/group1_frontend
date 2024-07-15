@@ -77,9 +77,9 @@ function RegisterPage() {
   };
 
   return (
-    <div className="h-screen ">
-      <section className="">
-        <div className="bg-[#A8715C] lg:bg-inherit">
+    <div className="h-screen">
+      <section className="h-screen">
+        <div className="h-screen bg-gradient-to-b from-[#A8715C] to-white lg:bg-inherit">
           <div className="flex justify-center">
             <div className="h-screen max-w-screen-x m-0 sm:rounded-lg flex items-center justify-center flex-1">
               <div className="h-screen lg:w-5/12 xl:w-7/12 p-6 sm:p-12">
@@ -185,7 +185,7 @@ function RegisterPage() {
               </div>
               {/*  */}
               {/* RIGHT SIDE */}
-              <div className="flex-1 bg-[#A8715C] h-full justify-center items-center hidden lg:flex">
+              <div className="flex-1 bg-gradient-[#A8715C] to-white h-full justify-center items-center hidden lg:flex">
                 <img
                   src="src\assets\images\log-in\Register-pc.jpg"
                   className="rounded-full w-145 h-145"
