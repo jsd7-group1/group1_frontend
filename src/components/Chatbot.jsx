@@ -83,7 +83,7 @@ const GoogleGenerativeAIComponent = () => {
       <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full p-4">
         <div className="flex items-center p-4 bg-[#655050] text-white rounded-t-lg">
           <img
-            src="https://info.ehl.edu/hubfs/1440/1440x960-barista.jpg" // Replace with your actual AI barista image URL
+            src="https://info.ehl.edu/hubfs/1440/1440x960-barista.jpg"
             alt="AI Avatar"
             className="w-12 h-12 rounded-full"
           />
@@ -110,11 +110,11 @@ const GoogleGenerativeAIComponent = () => {
                 </div>
               )}
               {chat.product && (
-                <div
-                  className="flex justify-start mb-2 cursor-pointer"
-                  onClick={() => handleAddToCart(chat.product.productID)}
-                >
-                  <div className="bg-white p-3 rounded-lg max-w-xs hover:opacity-80 transition-opacity duration-300 ease-in-out">
+                <div className="flex justify-start mb-2 cursor-pointer">
+                  <div
+                    className="bg-white p-3 rounded-lg max-w-xs hover:opacity-80 transition-opacity duration-300 ease-in-out"
+                    onClick={() => console.log(chat.product._id)}
+                  >
                     <img
                       src={chat.product.imgUrl}
                       alt={chat.product.productName}
