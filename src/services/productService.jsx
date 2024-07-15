@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://group1-backend.onrender.com";
+const baseURL = "https://group1-backend.onrender.com/products";
 
 const axiosInstance = axios.create({
     baseURL,
