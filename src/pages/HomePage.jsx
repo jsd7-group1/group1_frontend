@@ -119,7 +119,7 @@ const HomePage = () => {
       {/*Product HIGHLIGHTS Desktop SECTION*/}
       {/*/////////////////////////////////*/}
       <section className="hidden md:block container mx-auto mt-10">
-        <div className="flex justify-start space-x-4 ml-4 mb-6">
+        <div className="flex justify-start space-x-4 ml-4 mb-6 select-none">
           <button
             onClick={() => filterProducts("all")}
             className="px-4 py-2 bg-white border-2 border-[#655050] text-[#655050] hover:text-[#B0ADAD]  hover:border-[#B0ADAD]"
@@ -154,14 +154,12 @@ const HomePage = () => {
           {filteredProducts.map((product) => (
             <div
               key={product._id}
-              className="product m-4 p-4 border rounded-lg w-64  hover:shadow-lg min-w-56"
+              className="product m-4 p-4 border rounded-lg w-64  hover:shadow-lg min-w-56 cursor-pointer select-none"
+              onClick={() => {
+                handleAddToCart(product._id);
+              }}
             >
-              <div
-                className="relative"
-                onClick={() => {
-                  handleAddToCart(product._id);
-                }}
-              >
+              <div className="relative">
                 <img
                   src={product.imgUrl}
                   alt={product.productName}
