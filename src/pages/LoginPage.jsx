@@ -47,6 +47,7 @@ function LoginPage() {
         navigate("/")
       } catch (error) {
         console.log(error);
+        alert("Login failed");
         throw error;
       }
     }
