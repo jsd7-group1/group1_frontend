@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import axios from "axios";
+import { fetchProduct, addToCart } from "../services/productService";
 
 const GoogleGenerativeAIComponent = () => {
   const [generatedText, setGeneratedText] = useState("");
@@ -12,6 +14,32 @@ const GoogleGenerativeAIComponent = () => {
     },
   ]);
 
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchProduct();
+        console.log(response);
+        setProducts(response.data);
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleAddToCart = async (productID) => {
+    try {
+      const response = await addToCart(productID);
+      console.log(response);
+      alert("Added to cart successfully!");
+    } catch (error) {
+      console.log("Add product failed", error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -21,19 +49,26 @@ const GoogleGenerativeAIComponent = () => {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     try {
-      const baristaPrompt = `As a barista, recommend a coffee type for someone feeling ${mood}. Make it very short.`;
+      const baristaPrompt = `As a barista, recommend a product for someone feeling ${mood}. Make it short. and only recommend it from ${products
+        .map((product) => product.productName)
+        .join(", ")}. also give full product name when answer`;
 
       const result = await model.generateContent(baristaPrompt);
       const response = await result.response;
       const text = await response.text();
-
       setGeneratedText(text);
 
-      // Add the new conversation to the chat history
-      setChatHistory((prevChatHistory) => [
-        ...prevChatHistory,
-        { user: mood, ai: text },
-      ]);
+      // Extract product name from the chatbot response and fetch product details
+      const recommendedProduct = products.find((product) =>
+        text.includes(product.productName)
+      );
+      if (recommendedProduct) {
+        setChatHistory((prevChatHistory) => [
+          ...prevChatHistory,
+          { user: mood, ai: text, product: recommendedProduct },
+        ]);
+      }
+
       setMood(""); // Clear the mood input after submission
     } catch (error) {
       console.error("Error generating content:", error);
@@ -71,6 +106,23 @@ const GoogleGenerativeAIComponent = () => {
                 <div className="flex justify-start mb-2">
                   <div className="bg-gray-300 text-black p-3 rounded-lg max-w-xs">
                     {chat.ai}
+                  </div>
+                </div>
+              )}
+              {chat.product && (
+                <div
+                  className="flex justify-start mb-2 cursor-pointer"
+                  onClick={() => handleAddToCart(chat.product.productID)}
+                >
+                  <div className="bg-white p-3 rounded-lg max-w-xs hover:opacity-80 transition-opacity duration-300 ease-in-out">
+                    <img
+                      src={chat.product.imgUrl}
+                      alt={chat.product.productName}
+                      className="w-full h-auto rounded-md mb-2"
+                    />
+                    <h2 className="font-bold">{chat.product.productName}</h2>
+                    <p>{chat.product.description}</p>
+                    <p className="font-bold">฿{chat.product.price}</p>
                   </div>
                 </div>
               )}
