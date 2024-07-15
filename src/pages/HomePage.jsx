@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Herobg from "../assets/images/hero/herobackground.png";
 import GoogleGenerativeAIComponent from "../components/Chatbot";
-import { fetchProduct } from "../services/productService";
+import { fetchProduct, addToCart } from "../services/productService";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +36,17 @@ const HomePage = () => {
     };
     fetchProducts();
   }, []);
+
+  const handleAddToCart = async (productID) => {
+    try {
+      const response = await addToCart(productID);
+      console.log(response);
+      alert("Added to cart successfully!");
+    } catch (error) {
+      console.log("Add product failed", error);
+      throw error;
+    }
+  };
 
   const filterProducts = (category) => {
     setCategory(category);
@@ -145,7 +156,12 @@ const HomePage = () => {
               key={product._id}
               className="product m-4 p-4 border rounded-lg w-64  hover:shadow-lg min-w-56"
             >
-              <div className="relative">
+              <div
+                className="relative"
+                onClick={() => {
+                  handleAddToCart(product._id);
+                }}
+              >
                 <img
                   src={product.imgUrl}
                   alt={product.productName}
