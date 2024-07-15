@@ -5,8 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { loginService } from "../services/userService";
 
+
 function LoginPage() {
-  
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -35,7 +36,7 @@ function LoginPage() {
 
     if (!formData.password.trim()) {
       validationErrors.password = "Password is required!";
-    } 
+    }
 
     setErrors(validationErrors);
 
@@ -45,7 +46,8 @@ function LoginPage() {
         console.log("Login successful");
         navigate("/")
       } catch (error) {
-        
+        console.log(error);
+        throw error;
       }
     }
   };

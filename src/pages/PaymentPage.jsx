@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import QRcode from '../assets/images/payment/QR.jpg'
 import NavBar from '../components/Navbar';
-import { fetchUserOrder } from '../services/orderService';
+import { fetchUserOrder, checkoutOrder } from '../services/orderService';
 
 
 const PaymentPage = () => {
@@ -11,8 +12,21 @@ const PaymentPage = () => {
   const [vat,setVat] = useState(0);
   const [orderTotal,setOrderTotal] = useState(0);
   const [purchaseDate,setPurchaseDate] = useState('');
-  const [payment,SetPayment] = useState('card')
-  
+  const [payment,SetPayment] = useState('card');
+  const [customerName,setCustomerName] = useState('');
+  const [contact,setContact] = useState('');
+  const [city,setCity] = useState('');
+  const [house,setHouse] = useState('');
+  const [note,setNote] = useState('');
+  const [zipcode,setZipcode] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardHolder, setCardHolder] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [errors, setErrors] = useState({});
+  // const [address,setAddress] = useState('');
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () =>{
       try {
@@ -42,17 +56,61 @@ const PaymentPage = () => {
     }
   }, [order]);
 
-  // useEffect(() => {
-  //   const newTotal = calculateTotal(items);
-  //   const newVat = newTotal * 0.07;
-  //   const newOrderTotal = newTotal + newVat;
+  const validateCard = () => {
+    const errors = {};
 
-  //   setTotal(newTotal);
-  //   setVat(newVat);
-  //   setOrderTotal(newOrderTotal);
-  //   const currentDate = new Date();
-  //   setPurchaseDate(currentDate.toLocaleDateString());
-  // }, [items]);
+    if (!cardNumber) {
+      errors.cardNumber = 'Card number is required';
+    } else if (!/^\d{16}$/.test(cardNumber)) {
+      errors.cardNumber = 'Card number must be 16 digits';
+    }
+
+    if (!cardHolder) {
+      errors.cardHolder = 'Cardholder name is required';
+    }
+
+    if (!expiryDate) {
+      errors.expiryDate = 'Expiry date is required';
+    } else if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+      errors.expiryDate = 'Expiry date must be in MM/YY format';
+    }
+
+    if (!cvv) {
+      errors.cvv = 'CVV is required';
+    } else if (!/^\d{3,4}$/.test(cvv)) {
+      errors.cvv = 'CVV must be 3 or 4 digits';
+    }
+    return errors;
+  };
+
+  const handleCheckout = async (e) => {
+    e.preventDefault();
+    if (payment === 'card') {
+      const validationErrors = validateCard();
+      if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+        return;
+      }
+    }
+    const address = `${city}, ${house}, ${note}`;
+    console.log(address)
+    try {
+      const response = await checkoutOrder({
+        vat,
+        orderTotal,
+        customerName,
+        contact,
+        zipcode,
+        address
+      });
+      alert("Checkout success");
+      console.log(response);
+      navigate('/')
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
       <div className="mx-auto md:h-screen">
         <NavBar />
@@ -116,24 +174,44 @@ const PaymentPage = () => {
                           <input
                             type="text"
                             placeholder="Card number"
+                            value={cardNumber}
+                            onChange={(e)=> setCardNumber(e.target.value)}
                             className="w-full md:w-[95%] rounded px-4 py-3"
                           />
+                          {errors.cardNumber && (
+                          <p className="text-red-500 text-sm">{errors.cardNumber}</p>
+                          )}
                           <input
                             type="text"
                             placeholder=" Name of card holder"
+                            value={cardHolder}
+                            onChange={(e)=> setCardHolder(e.target.value)}
                             className="w-full md:w-[95%] rounded px-4 py-3"
                           />
+                          {errors.cardHolder && (
+                          <p className="text-red-500 text-sm">{errors.cardHolder}</p>
+                          )}
                           <div className="gap-4">
                             <input
                               type="text"
                               placeholder="EXP."
+                              value={expiryDate}
+                              onChange={(e)=> setExpiryDate(e.target.value)}
                               className="w-full md:w-[40%] rounded px-4 mr-2 py-3"
                             />
+                            {errors.expiryDate && (
+                            <p className="text-red-500 text-sm">{errors.expiryDate}</p>
+                            )}
                             <input
                               type="text"
                               placeholder="CVV"
+                              value={cvv}
+                              onChange={(e)=> setCvv(e.target.value)}
                               className="w-full md:w-[40%] rounded px-4 py-3 mt-4 md:mt-0  "
                             />
+                            {errors.cvv && (
+                            <p className="text-red-500 text-sm">{errors.cvv}</p>
+                            )}
                           </div>
                         </div>
                       </form>
@@ -143,6 +221,7 @@ const PaymentPage = () => {
                           src={QRcode}
                           className="w-72 h-72"
                           alt="QR code"
+                          onClick={payment === 'qr' ? handleCheckout : undefined}
                         />
                       </div>
                     )}
@@ -153,37 +232,49 @@ const PaymentPage = () => {
 
               <div className="md:flex-col md:mt-2 md:w-1/2 md:items-end">
                   <div className='mb-2 md:bg-white rounded-md md:p-4  shadow-md shadow-[#A5AC99]'>
-                    <h3 className=' pb-2 text-xl font-bold'>ADRESS</h3>
+                    <h3 className=' pb-2 text-xl font-bold'>ADDRESS</h3>
                     <form className=" md:flex-col md:flex-1 ">
                       <div className="flex flex-col md:gap-1 gap-4">
                         <input
                           type="text"
                           placeholder="Recipient's Name"
+                          value={customerName}
+                          onChange={(e)=> setCustomerName(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
                           placeholder="Phone Number"
+                          value={contact}
+                          onChange={(e)=> setContact(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
-                          placeholder="City/District/Postcode/Subdistrict"
+                          value={city}
+                          onChange={e=> setCity(e.target.value)}
+                          placeholder="City/District/Subdistrict"
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
-                          placeholder="House No. ,Street Name"
+                          placeholder="House No. ,Street Name, Unit/Floor"
+                          value={house}
+                          onChange={e=> setHouse(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <input
                           type="text"
-                          placeholder="Unit/Floor"
+                          placeholder="Zipcode"
+                          value={zipcode}
+                          onChange={e=> setZipcode(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-1 px-4 py-3"
                         />
                         <textarea
                           type="text"
                           placeholder="Additional note"
+                          value={note}
+                          onChange={e=> setNote(e.target.value)}
                           className="hover:border-[#897979] md:border-2 w-full md:w-[100%] rounded md:px-4 md:py-3 px-4 py-3"
                         />
                       </div>
@@ -219,6 +310,7 @@ const PaymentPage = () => {
               </Link>
               <button
                 type="button"
+                onClick={handleCheckout}
                 className="px-6 py-4 bg-[#897979] rounded-md hover:bg-white hover:text-[#897979]  w-4/5 md:w-[49.50%] md:boder-2 text-white text-xl"
               >
                 Submit
