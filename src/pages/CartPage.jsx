@@ -100,7 +100,7 @@ const CartPage = () => {
             ))))}
           </div>
           <div className="md:p-12 flex justify-between w-full">
-            <Link to="/allProduct" className="hidden md:inline-block w-1/2">
+            <Link to="/product" className="hidden md:inline-block w-1/2">
               <span className='text-red-500 hover:text-red-700 font-bold'>⇦ Continue Shopping</span>
             </Link>
             <div className="md:p-1 md:w-1/2 w-full">
