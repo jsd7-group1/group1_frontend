@@ -6,12 +6,6 @@ import Herobg from "../assets/images/hero/herobackground.png";
 import GoogleGenerativeAIComponent from "../components/Chatbot";
 
 const HomePage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <>
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
@@ -67,56 +61,7 @@ const HomePage = () => {
       {/*Product HIGHTLIGHTS Desktop SECTION*/}
       {/*/////////////////////////////////*/}
       <section className="hidden md:block section p-10">
-        <div className="flex justify-between">
-          <div className="flex gap-4">
-            <div className=" text-center p-4 border border-black transition duration-300 ease-in-out cursor-pointer hover:bg-[#655050] hover:text-white">
-              <p>All Drinks</p>
-            </div>
-            <div className=" text-center p-4 border border-black transition duration-300 ease-in-out cursor-pointer hover:bg-[#655050] hover:text-white">
-              <p>Hot Drinks</p>
-            </div>
-            <div className=" text-center p-4 border border-black transition duration-300 ease-in-out cursor-pointer hover:bg-[#655050] hover:text-white">
-              <p>Cold Drinks</p>
-            </div>
-            <div className=" text-center p-4 border border-black transition duration-300 ease-in-out cursor-pointer hover:bg-[#655050] hover:text-white">
-              <p>Add-Ons</p>
-            </div>
-          </div>
-          <div>
-            <div
-              id="dropdown-button"
-              onClick={toggleDropdown}
-              className="select-none border border-gray-400 rounded px-5 py-2 cursor-pointer flex justify-between"
-            >
-              Sort By
-            </div>
-            {isOpen && (
-              <div
-                id="dropdown-menu"
-                className="z-10 absolute top-50 w-400 border border-gray-300 bg-white shadow-md mt-2"
-              >
-                <div
-                  id="dropdown-popular"
-                  className="py-4 px-4 cursor-pointer hover:bg-gray-100"
-                >
-                  Popular
-                </div>
-                <div
-                  id="dropdown-price"
-                  className="py-4 px-4 cursor-pointer hover:bg-gray-100"
-                >
-                  Price
-                </div>
-                <div
-                  id="dropdown-newest"
-                  className="py-4 px-4 cursor-pointer hover:bg-gray-100"
-                >
-                  Newest
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+        <div className="text-4xl font-semibold">Recommendation</div>
         {/* Swiper */}
         <div className="grid grid-cols-4 gap-4 pt-12">
           <div className="">
@@ -224,56 +169,46 @@ const HomePage = () => {
         </h2>
         <div className="pt-6">
           <div className="card_top relative">
-            <img
-              src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
-              alt=""
-              className="card_img"
-            />
-            <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-black px-2 py-1 font-semibold rounded">
-              Hot
-            </div>
+            <Link to="/product">
+              <img
+                src="https://res.cloudinary.com/productpic/image/upload/v1721034256/Yuzu-Cold-Brew_zjqrwt_rohyw4.png"
+                alt=""
+                className="card_img"
+              />
+              <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
+                Cold
+              </div>
+            </Link>
           </div>
           <div className="card_body mt-4">
-            <h3 className="card_title text-lg font-semibold">Menu1</h3>
-            <p className="card_price text-primary">$120</p>
-            <div className="card_ratings flex items-center">
-              <div className="card_stars flex space-x-1">
-                <a href="#">
-                  <img
-                    src="../assets/images/navbar-icons/cart.png"
-                    alt=""
-                    className="nav_cart cursor-pointer h-7"
-                  />
-                </a>
-              </div>
-            </div>
+            <Link to="/product">
+              <h3 className="card_title text-lg font-semibold">
+                Yuzu cold brew
+              </h3>
+              <p className="card_price text-primary">฿150</p>
+            </Link>
           </div>
         </div>
         <div className="pt-6">
           <div className="card_top relative">
-            <img
-              src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
-              alt=""
-              className="card_img"
-            />
-            <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-black px-2 py-1 font-semibold rounded">
-              Hot
+            <Link to="/product">
+              <img
+                src="https://res.cloudinary.com/productpic/image/upload/v1721034255/prunus_reqyfc_h5wqub.jpg"
+                alt=""
+                className="card_img"
+              />
+            </Link>
+            <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
+              Bakery
             </div>
           </div>
           <div className="card_body mt-4 pb-4">
-            <h3 className="card_title text-lg font-semibold">Menu2</h3>
-            <p className="card_price text-primary">$120</p>
-            <div className="card_ratings flex items-center">
-              <div className="card_stars flex space-x-1">
-                <a href="#">
-                  <img
-                    src="../assets/images/navbar-icons/cart.png"
-                    alt=""
-                    className="nav_cart cursor-pointer h-7"
-                  />
-                </a>
-              </div>
-            </div>
+            <Link to="/product">
+              <h3 className="card_title text-lg font-semibold">
+                Prunus dulcis Croissant
+              </h3>
+              <p className="card_price text-primary">฿90</p>
+            </Link>
           </div>
         </div>
         <a
