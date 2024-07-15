@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-// eslint-disable-next-line no-unused-vars
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { newRegister } from "../services/userService";
@@ -70,7 +68,7 @@ function RegisterPage() {
         alert("Register Successfully!");
         navigate("/");
       } catch (error) {
-        console.log("Register Error",error);
+        console.log("Register Error", error);
         setErrors({ form: "Registration failed. Please try again." });
       }
     }
@@ -146,10 +144,10 @@ function RegisterPage() {
                         <span>{errors.confirmPassword}</span>
                       )}
                       <label
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        className="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white"
                         htmlFor="file"
                       >
-                        Upload file
+                        Upload file(optional)
                       </label>
                       <input
                         className="block w-full py-1 text-sm text-gray-900 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none  dark:placeholder-gray-400"
@@ -158,6 +156,15 @@ function RegisterPage() {
                         onChange={handleChange}
                       />
                       {errors.file && <span>{errors.file}</span>}
+                      <p className="text-gray-900 mt-4 flex flex-row gap-1.5">
+                        {" "}
+                        Already registered?{" "}
+                        <Link to="/login">
+                          <div className="text-sm text-blue-500 -200 hover:underline mt-0.5">
+                            Login
+                          </div>
+                        </Link>
+                      </p>
                       {/* change from box to icon */}
                       <button
                         className="mt-5 tracking-wide font-semibold bg-[#A8715C] text-gray-100 w-full py-4 rounded-lg hover:bg-[#89583f] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"

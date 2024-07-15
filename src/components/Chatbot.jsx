@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import axios from "axios";
 import { fetchProduct, addToCart } from "../services/productService";
 
 const GoogleGenerativeAIComponent = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import Reel from "../assets/images/footer-icons/reel.png"
-import Instragram from "../assets/images/footer-icons/ig.png"
+import Instagram from "../assets/images/footer-icons/ig.png"
 import Chat from "../assets/images/footer-icons/chat.png"
 
 const Footer =()=> {
@@ -17,7 +17,7 @@ const Footer =()=> {
                         <img src={Reel} alt="reel"/>
                         </a>
                         <a href="#" className="inline-block mr-4 w-[22px]">
-                        <img src={Instragram} alt="ig"/>
+                        <img src={Instagram} alt="ig"/>
                         </a>
                         <a href="#" className="inline-block mr-4 w-[22px]">
                         <img src={Chat} alt="chat"/>
