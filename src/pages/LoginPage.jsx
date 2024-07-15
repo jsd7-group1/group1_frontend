@@ -79,7 +79,7 @@ function LoginPage() {
                 <div className="w-full mt-4 flex flex-col items-center">
                   <img
                     className="lg:hidden rounded-2xl w-85 h-65"
-                    src="src\assets\images\log-in\Login-phone.png"
+                    src="https://res.cloudinary.com/productpic/image/upload/v1721025632/Login-phone_jxzhmg.png"
                   />
                   <h1 className="text-2xl pt-4 xl:text-3xl font-extrabold">
                     Login
@@ -152,7 +152,7 @@ function LoginPage() {
               {/* RIGHT SIDE */}
               <div className="flex-1 bg-gradient-[#A8715C] to-white h-screen justify-center items-center hidden lg:flex">
                 <img
-                  src="src\assets\images\log-in\Login-pc.jpg"
+                  src="https://res.cloudinary.com/productpic/image/upload/v1721025631/Login-pc_glyevj.jpg"
                   className="rounded-full w-145 h-145"
                 />
               </div>

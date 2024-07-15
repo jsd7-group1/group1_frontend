@@ -121,110 +121,90 @@ const HomePage = () => {
         <div className="grid grid-cols-4 gap-4 pt-12">
           <div className="">
             <div className="card_top relative">
-              <img
-                src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
-                alt=""
-                className="card_img"
-              />
-              <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-black px-2 py-1 font-semibold rounded">
-                Hot
-              </div>
+              <Link to="/product">
+                <img
+                  src="https://res.cloudinary.com/productpic/image/upload/v1721031041/caramelmacchiato_vmadbe_azngha.png"
+                  alt=""
+                  className="card_img"
+                />
+                <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
+                  Hot
+                </div>
+              </Link>
             </div>
             <div className="card_body mt-4">
-              <h3 className="card_title text-lg font-semibold">Menu1</h3>
-              <p className="card_price text-primary">$120</p>
-              <div className="card_ratings flex items-center">
-                <div className="card_stars flex space-x-1">
-                  <a href="#">
-                    <img
-                      src="../assets/images/navbar-icons/cart.png"
-                      alt=""
-                      className="nav_cart cursor-pointer h-7"
-                    />
-                  </a>
-                </div>
-              </div>
+              <Link to="/product">
+                <h3 className="card_title text-lg font-semibold">
+                  Caramel Macchiato
+                </h3>
+              </Link>
+              <p className="card_price text-primary">฿170</p>
             </div>
           </div>
           <div className="">
             <div className="card_top relative">
-              <img
-                src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
-                alt=""
-                className="card_img"
-              />
-              <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-black px-2 py-1 font-semibold rounded">
-                Hot
-              </div>
+              <Link to="/product">
+                <img
+                  src="https://res.cloudinary.com/productpic/image/upload/v1721031050/iceclassicchoc_dokx3s_nj8nzn.jpg"
+                  alt=""
+                  className="card_img"
+                />
+                <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
+                  Cold
+                </div>
+              </Link>
             </div>
             <div className="card_body mt-4">
-              <h3 className="card_title text-lg font-semibold">Menu2</h3>
-              <p className="card_price text-primary">$120</p>
-              <div className="card_ratings flex items-center">
-                <div className="card_stars flex space-x-1">
-                  <a href="#">
-                    <img
-                      src="../assets/images/navbar-icons/cart.png"
-                      alt=""
-                      className="nav_cart cursor-pointer h-7"
-                    />
-                  </a>
-                </div>
-              </div>
+              <Link to="/product">
+                <h3 className="card_title text-lg font-semibold">
+                  Iced Classic Chocolate
+                </h3>
+              </Link>
+              <p className="card_price text-primary">฿135</p>
             </div>
           </div>
           <div className="">
             <div className="card_top relative">
-              <img
-                src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
-                alt=""
-                className="card_img"
-              />
-              <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-black px-2 py-1 font-semibold rounded">
-                Hot
-              </div>
+              <Link to="/product">
+                <img
+                  src="https://res.cloudinary.com/productpic/image/upload/v1721031040/Jumbo-Sausage_o8d6u9_ijzhp5.png"
+                  alt=""
+                  className="card_img"
+                />
+                <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
+                  Bakery
+                </div>
+              </Link>
             </div>
             <div className="card_body mt-4">
-              <h3 className="card_title text-lg font-semibold">Menu3</h3>
-              <p className="card_price text-primary">$120</p>
-              <div className="card_ratings flex items-center">
-                <div className="card_stars flex space-x-1">
-                  <a href="#">
-                    <img
-                      src="../assets/images/navbar-icons/cart.png"
-                      alt=""
-                      className="nav_cart cursor-pointer h-7"
-                    />
-                  </a>
-                </div>
-              </div>
+              <Link to="/product">
+                <h3 className="card_title text-lg font-semibold">
+                  Jumbo sausage
+                </h3>
+              </Link>
+              <p className="card_price text-primary">฿95</p>
             </div>
           </div>
           <div className="">
             <div className="card_top relative">
-              <img
-                src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
-                alt=""
-                className="card_img"
-              />
-              <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-black px-2 py-1 font-semibold rounded">
-                Hot
-              </div>
+              <Link to="/product">
+                <img
+                  src="https://res.cloudinary.com/productpic/image/upload/v1721031051/myrtillus-cheese-cake_r6g5sn_etmtxk.png"
+                  alt=""
+                  className="card_img"
+                />
+                <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
+                  Bakery
+                </div>
+              </Link>
             </div>
             <div className="card_body mt-4">
-              <h3 className="card_title text-lg font-semibold">Menu4</h3>
-              <p className="card_price text-primary">$120</p>
-              <div className="card_ratings flex items-center">
-                <div className="card_stars flex space-x-1">
-                  <a href="#">
-                    <img
-                      src="../assets/images/navbar-icons/cart.png"
-                      alt=""
-                      className="nav_cart cursor-pointer h-7"
-                    />
-                  </a>
-                </div>
-              </div>
+              <Link to="/product">
+                <h3 className="card_title text-lg font-semibold">
+                  Myrtillus Cheese cake
+                </h3>
+              </Link>
+              <p className="card_price text-primary">฿125</p>
             </div>
           </div>
         </div>
@@ -325,17 +305,16 @@ const HomePage = () => {
               <strong>Signature Coffee</strong>.
             </p>
             <div className="flex justify-center mt-10 md:justify-start gap-6">
-              <Link to="/allProduct">
+              <Link to="/product">
                 <div className="text-white bg-[#655050] font-medium  px-5 py-4 text-center hover:bg-white hover:text-[#655050] border-2 border-[#655050] hover:drop-shadow-md transition duration-300 ease-in-out">
                   Order Now ➜
                 </div>
               </Link>
-              <a
-                href="/cart"
-                className="text-[#655050] bg-transparent font-medium border-2 border-[#655050]  px-5 py-4 text-center  hover:text-[#b0adad] hover:drop-shadow-md transition duration-300 ease-in-out"
-              >
-                See Your Cart
-              </a>
+              <Link to="/cart">
+                <div className="text-[#655050] bg-transparent font-medium border-2 border-[#655050]  px-5 py-4 text-center  hover:text-[#b0adad] hover:drop-shadow-md transition duration-300 ease-in-out">
+                  See Your Cart
+                </div>
+              </Link>
             </div>
           </div>
           <div className="lg:w1/2 py-8">
