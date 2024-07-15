@@ -34,7 +34,7 @@ const deleteProductFromCart = async (orderID,productID) => {
             },
             data: {
                 orderID,
-                productID 
+                productID
             },
         });
         return response.data;

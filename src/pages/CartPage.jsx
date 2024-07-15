@@ -10,7 +10,7 @@ import { fetchUserOrder, deleteProductFromCart } from '../services/orderService'
 // token จากการ LogIN ผ่าน PostMan
 
 const CartPage = () => {
-  const { cartItems, addToCart, removeFromCart, deleteFromCart } = useContext(CartContext);
+  /* const { cartItems, addToCart, removeFromCart, deleteFromCart } = useContext(CartContext); */
   const [vat, setVat] = useState(0);
   const [orderTotal, setOrderTotal] = useState(0);
   const [purchaseDate, setPurchaseDate] = useState('');
