@@ -1,11 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Herobg from "../assets/images/hero/herobackground.png";
 import GoogleGenerativeAIComponent from "../components/Chatbot";
+import { fetchProduct } from "../services/productService";
 
 const HomePage = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [category, setCategory] = useState("all");
+  const [fade, setFade] = useState(false);
+  const shuffleArray = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+  useEffect(() => {
+    // Fetch products from API
+    const fetchProducts = async () => {
+      try {
+        const response = await fetchProduct();
+        const products = response.data || [];
+        setProducts(Array.isArray(products) ? products : []);
+        const shuffledProducts = shuffleArray(
+          Array.isArray(products) ? products : []
+        );
+        setFilteredProducts(shuffledProducts.slice(0, 4));
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const filterProducts = (category) => {
+    setCategory(category);
+    let filtered = products;
+    if (category !== "all") {
+      filtered = products.filter(
+        (product) => product.categoryName === category
+      );
+    }
+    const shuffledFilteredProducts = shuffleArray(filtered);
+    // Start the fade out transition
+    setFade(true);
+    setTimeout(() => {
+      setFilteredProducts(shuffledFilteredProducts.slice(0, 4)); // Limit to 4 products
+      setFade(false);
+    }, 300);
+  };
   return (
     <>
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
@@ -33,7 +80,7 @@ const HomePage = () => {
                 Expertly Crafted
               </p>
               <a
-                className="px-5 py-2 inline-block bg-[#f4f4f4] bg-opacity-50 border border-[#000000] text-[#655050] text-block hover:bg-[#f4f4f4] transition-colors my-10 rounded-full hover:drop-shadow-md duration-300 ease-in-out"
+                className="px-5 py-2 inline-block bg-[#F4F4F4] bg-opacity-50 border border-[#000000] text-[#655050] text-block hover:bg-[#F4F4F4] transition-colors my-10 rounded-full hover:drop-shadow-md duration-300 ease-in-out"
                 href="#Recommendation"
               >
                 Our Signature ↓
@@ -51,111 +98,74 @@ const HomePage = () => {
       {/*/////////////////////////////////*/}
       {/*SPECIAL FEATURE SECTION*/}
       {/*/////////////////////////////////*/}
-      <div className="container mx-auto mt-10">
+      <div className="flex justify-center py-10 bg-[#FCFAFA] ">
         <GoogleGenerativeAIComponent />
       </div>
       {/*/////////////////////////////////*/}
       {/*END THE SPECIAL FEATURE SECTION*/}
       {/*/////////////////////////////////*/}
       {/*/////////////////////////////////*/}
-      {/*Product HIGHTLIGHTS Desktop SECTION*/}
+      {/*Product HIGHLIGHTS Desktop SECTION*/}
       {/*/////////////////////////////////*/}
-      <section className="hidden md:block section p-10">
-        <div className="text-4xl font-semibold">Recommendation</div>
-        {/* Swiper */}
-        <div className="grid grid-cols-4 gap-4 pt-12">
-          <div className="">
-            <div className="card_top relative">
-              <Link to="/product">
+      <section className="hidden md:block container mx-auto mt-10">
+        <div className="flex justify-start space-x-4 ml-4 mb-6">
+          <button
+            onClick={() => filterProducts("all")}
+            className="px-4 py-2 bg-white border-2 border-[#655050] text-[#655050] hover:text-[#B0ADAD]  hover:border-[#B0ADAD]"
+          >
+            All Categories
+          </button>
+          <button
+            onClick={() => filterProducts("hot")}
+            className="px-4 py-2 bg-white border-2 border-[#655050] text-[#655050] hover:text-[#B0ADAD]  hover:border-[#B0ADAD]"
+          >
+            Hot Drinks
+          </button>
+          <button
+            onClick={() => filterProducts("cold")}
+            className="px-4 py-2 bg-white border-2 border-[#655050] text-[#655050] hover:text-[#B0ADAD]  hover:border-[#B0ADAD]"
+          >
+            Cold Drinks
+          </button>
+          <button
+            onClick={() => filterProducts("bakery")}
+            className="px-4 py-2 bg-white border-2 border-[#655050] text-[#655050] hover:text-[#B0ADAD]  hover:border-[#B0ADAD]"
+          >
+            Bakery
+          </button>
+        </div>
+        <div
+          id="product-container"
+          className={`flex justify-around overflow-hidden transition-opacity duration-500 ${
+            fade ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          {filteredProducts.map((product) => (
+            <div
+              key={product._id}
+              className="product m-4 p-4 border rounded-lg w-64  hover:shadow-lg min-w-56"
+            >
+              <div className="relative">
                 <img
-                  src="https://res.cloudinary.com/productpic/image/upload/v1721031041/caramelmacchiato_vmadbe_azngha.png"
-                  alt=""
-                  className="card_img"
+                  src={product.imgUrl}
+                  alt={product.productName}
+                  className="w-full h-auto transition duration-500 ease-in-out"
                 />
-                <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
-                  Hot
+                <div className="absolute top-2 left-2 bg-primary text-white px-2 py-1 font-semibold rounded">
+                  {product.categoryName}
                 </div>
-              </Link>
+              </div>
+              <h3 className="text-lg font-semibold mt-4">
+                {product.productName}
+              </h3>
+              <p className="text-primary">฿{product.price}</p>
+              <p className="text-gray-600">{product.description}</p>
             </div>
-            <div className="card_body mt-4">
-              <Link to="/product">
-                <h3 className="card_title text-lg font-semibold">
-                  Caramel Macchiato
-                </h3>
-              </Link>
-              <p className="card_price text-primary">฿170</p>
-            </div>
-          </div>
-          <div className="">
-            <div className="card_top relative">
-              <Link to="/product">
-                <img
-                  src="https://res.cloudinary.com/productpic/image/upload/v1721031050/iceclassicchoc_dokx3s_nj8nzn.jpg"
-                  alt=""
-                  className="card_img"
-                />
-                <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
-                  Cold
-                </div>
-              </Link>
-            </div>
-            <div className="card_body mt-4">
-              <Link to="/product">
-                <h3 className="card_title text-lg font-semibold">
-                  Iced Classic Chocolate
-                </h3>
-              </Link>
-              <p className="card_price text-primary">฿135</p>
-            </div>
-          </div>
-          <div className="">
-            <div className="card_top relative">
-              <Link to="/product">
-                <img
-                  src="https://res.cloudinary.com/productpic/image/upload/v1721031040/Jumbo-Sausage_o8d6u9_ijzhp5.png"
-                  alt=""
-                  className="card_img"
-                />
-                <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
-                  Bakery
-                </div>
-              </Link>
-            </div>
-            <div className="card_body mt-4">
-              <Link to="/product">
-                <h3 className="card_title text-lg font-semibold">
-                  Jumbo sausage
-                </h3>
-              </Link>
-              <p className="card_price text-primary">฿95</p>
-            </div>
-          </div>
-          <div className="">
-            <div className="card_top relative">
-              <Link to="/product">
-                <img
-                  src="https://res.cloudinary.com/productpic/image/upload/v1721031051/myrtillus-cheese-cake_r6g5sn_etmtxk.png"
-                  alt=""
-                  className="card_img"
-                />
-                <div className="card_tag absolute top-1 left-1 z-10 bg-primary text-white px-2 py-1 font-semibold rounded">
-                  Bakery
-                </div>
-              </Link>
-            </div>
-            <div className="card_body mt-4">
-              <Link to="/product">
-                <h3 className="card_title text-lg font-semibold">
-                  Myrtillus Cheese cake
-                </h3>
-              </Link>
-              <p className="card_price text-primary">฿125</p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
       {/*/////////////////////////////////*/}
-      {/*End the Product HIGHTLIGHTS Desktop SECTION*/}
+      {/*End the Product HIGHLIGHTS Desktop SECTION*/}
       {/*/////////////////////////////////*/}
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
       {/*Product HIGHTLIGHTS Mobile SECTION*/}
@@ -221,6 +231,7 @@ const HomePage = () => {
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
       {/*End the Product HIGHTLIGHTS Mobile SECTION*/}
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
+
       {/*********************************/}
       {/*RECOMMENDATION SECTION*/}
       {/*********************************/}
@@ -268,5 +279,4 @@ const HomePage = () => {
     </>
   );
 };
-
 export default HomePage;
