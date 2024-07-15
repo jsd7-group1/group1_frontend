@@ -56,7 +56,7 @@ const NavBar = () => {
                 <li>
                   <Link
                     className="hover:text-gray-500"
-                    to="/allProduct"
+                    to="/product"
                     onClick={() => setMenuOpen(false)}
                   >
                     Menu
