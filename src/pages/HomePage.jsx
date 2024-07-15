@@ -122,7 +122,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="src\assets\images\hero\Coffee.png"
+                src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
                 alt=""
                 className="card_img"
               />
@@ -149,7 +149,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="src\assets\images\hero\Coffee.png"
+                src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
                 alt=""
                 className="card_img"
               />
@@ -176,7 +176,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="src\assets\images\hero\Coffee.png"
+                src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
                 alt=""
                 className="card_img"
               />
@@ -203,7 +203,7 @@ const HomePage = () => {
           <div className="">
             <div className="card_top relative">
               <img
-                src="src\assets\images\hero\Coffee.png"
+                src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
                 alt=""
                 className="card_img"
               />
@@ -245,7 +245,7 @@ const HomePage = () => {
         <div className="pt-6">
           <div className="card_top relative">
             <img
-              src="./assets/images/hero/Coffee.png"
+              src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
               alt=""
               className="card_img"
             />
@@ -272,7 +272,7 @@ const HomePage = () => {
         <div className="pt-6">
           <div className="card_top relative">
             <img
-              src="../assets/images/hero/Coffee.png"
+              src="https://res.cloudinary.com/productpic/image/upload/v1721025645/Coffee_cbshya.png"
               alt=""
               className="card_img"
             />
@@ -331,7 +331,7 @@ const HomePage = () => {
                 </div>
               </Link>
               <a
-                href="#"
+                href="/cart"
                 className="text-[#655050] bg-transparent font-medium border-2 border-[#655050]  px-5 py-4 text-center  hover:text-[#b0adad] hover:drop-shadow-md transition duration-300 ease-in-out"
               >
                 See Your Cart
@@ -341,7 +341,7 @@ const HomePage = () => {
           <div className="lg:w1/2 py-8">
             <img
               className="h-80"
-              src="src\assets\images\hero\signatureproduct.png"
+              src="https://res.cloudinary.com/productpic/image/upload/v1721025686/signatureproduct_jauz9w.png"
               alt="Signature"
             />
           </div>

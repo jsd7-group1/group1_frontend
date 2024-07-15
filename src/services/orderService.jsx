@@ -1,7 +1,7 @@
 import axios from "axios";
 import { contract } from "ionicons/icons";
 
-const baseURL = "https://group1-backend.onrender.com"
+const baseURL = "https://group1-backend.onrender.com/orders"
 
 const axiosInstance = axios.create({
     baseURL,
