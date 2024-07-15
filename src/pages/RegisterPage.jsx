@@ -87,13 +87,13 @@ function RegisterPage() {
                   {/* PHONE LOGO */}
                   <img
                     className="lg:hidden w-10 h-10 mx-auto"
-                    src="src\assets\images\navbar-icons\logo.png"
+                    src="https://res.cloudinary.com/productpic/image/upload/v1721025668/logo_dg7org.png"
                   />
                   {/* PC LOGO */}
                   <div className="flex justify-center">
                     <img
                       className="hidden lg:block w-10 h-10 mx-auto"
-                      src="src\assets\images\navbar-icons\logo.png"
+                      src="https://res.cloudinary.com/productpic/image/upload/v1721025668/logo_dg7org.png"
                     />
                   </div>
                 </div>
@@ -101,7 +101,7 @@ function RegisterPage() {
                 <div className="mt-4 flex flex-col items-center">
                   <img
                     className="lg:hidden rounded-3xl w-85 h-65"
-                    src="src\assets\images\log-in\Register-phone.jpg"
+                    src="https://res.cloudinary.com/productpic/image/upload/v1721025631/Register-phone_dw94m2.jpg"
                   />
                   <h1 className="pt-4 text-2xl xl:text-3xl font-extrabold">
                     Register
@@ -187,7 +187,7 @@ function RegisterPage() {
               {/* RIGHT SIDE */}
               <div className="flex-1 bg-gradient-[#A8715C] to-white h-full justify-center items-center hidden lg:flex">
                 <img
-                  src="src\assets\images\log-in\Register-pc.jpg"
+                  src="https://res.cloudinary.com/productpic/image/upload/v1721025632/Register-pc_whpeem.jpg"
                   className="rounded-full w-145 h-145"
                 />
               </div>
