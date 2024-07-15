@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
 import Footer from '../components/Footer';
 import Plus from "../assets/Allpd-icon/Icon Plus.svg";
 import Minus from "../assets/Allpd-icon/Icon Minus.svg";
@@ -10,7 +9,6 @@ import { fetchUserOrder, deleteProductFromCart } from '../services/orderService'
 // token จากการ LogIN ผ่าน PostMan
 
 const CartPage = () => {
-  const { cartItems, addToCart, removeFromCart, deleteFromCart } = useContext(CartContext);
   const [vat, setVat] = useState(0);
   const [orderTotal, setOrderTotal] = useState(0);
   const [purchaseDate, setPurchaseDate] = useState('');
@@ -91,9 +89,9 @@ const CartPage = () => {
                     </div>
                   </div>
                   <div className="flex justify-center w-1/5">
-                    <img src={Minus} alt="minus" onClick={() => removeFromCart(item.id)} />
+                    {/* <img src={Minus} alt="minus" onClick={() => removeFromCart(item.id)} /> */}
                     <input className="mx-2 border text-center w-8" type="text" value={item.quantity} readOnly />
-                    <img src={Plus} alt="plus" onClick={() => addToCart(item)} />
+                    {/* <img src={Plus} alt="plus" onClick={() => addToCart(item)} /> */}
                   </div>
                   <span className="text-center w-1/5 font-semibold text-sm">${item.price}</span>
                   <span className="text-center w-1/5 font-semibold text-sm">${(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
