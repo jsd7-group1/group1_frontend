@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Plus from "../assets/Allpd-icon/Icon Plus.svg";
 import Minus from "../assets/Allpd-icon/Icon Minus.svg";
 import NavBar from '../components/Navbar';
-import { fetchUserOrder, deleteProductFromCart } from '../services/orderService';
+import { fetchUserOrder, deleteProductFromCart, increaseQuantity, decreaseQuantity } from '../services/orderService';
 
 // token จากการ LogIN ผ่าน PostMan
 
@@ -89,12 +89,12 @@ const CartPage = () => {
                     </div>
                   </div>
                   <div className="flex justify-center w-1/5">
-                    {/* <img src={Minus} alt="minus" onClick={() => removeFromCart(item.id)} /> */}
+                    <img src={Minus} alt="minus" onClick={() => decreaseQuantity({orderID: ord._id, productID: item.productID})} />
                     <input className="mx-2 border text-center w-8" type="text" value={item.quantity} readOnly />
-                    {/* <img src={Plus} alt="plus" onClick={() => addToCart(item)} /> */}
+                    <img src={Plus} alt="plus" onClick={() => increaseQuantity({orderID: ord._id, productID: item.productID})} />
                   </div>
-                  <span className="text-center w-1/5 font-semibold text-sm">${item.price}</span>
-                  <span className="text-center w-1/5 font-semibold text-sm">${(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
+                  <span className="text-center w-1/5 font-semibold text-sm">฿{item.price}</span>
+                  <span className="text-center w-1/5 font-semibold text-sm">฿{(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
                   <button onClick={() => deleteFromCarts(ord.orderID, item.productID)} className='bg-red-500 text-xl font-bold rounded-md py-10 md:px-[3px] px-2'>–</button>
                 </div>
             ))))}
@@ -106,11 +106,11 @@ const CartPage = () => {
             <div className="md:p-1 md:w-1/2 w-full">
               <div className="md:flex md:justify-end items-center md:mt-8 mt-2 flex justify-between">
                 <span className="text-gray-600 mr-4">Vat (7%):</span>
-                <span className="font-bold">${vat.toFixed(2)}</span>
+                <span className="font-bold">฿{vat.toFixed(2)}</span>
               </div>
               <div className="md:flex md:justify-end items-center md:mt-8 mt-2 flex justify-between">
                 <span className="text-gray-600 mr-4">Order Total:</span>
-                <span className="font-bold">${orderTotal.toFixed(2)}</span>
+                <span className="font-bold">฿{orderTotal.toFixed(2)}</span>
               </div>
               <div className="md:flex md:justify-end items-center md:mt-8 mt-2 flex justify-between">
                 <span className="text-gray-600 mr-4">Purchase Date:</span>
