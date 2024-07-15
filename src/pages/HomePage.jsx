@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -58,7 +58,7 @@ const HomePage = () => {
       {/*END THE SPECIAL FEATURE SECTION*/}
       {/*/////////////////////////////////*/}
       {/*/////////////////////////////////*/}
-      {/*Product HIGHTLIGHTS Desktop SECTION*/}
+      {/*Product HIGHLIGHTS Desktop SECTION*/}
       {/*/////////////////////////////////*/}
       <section className="hidden md:block section p-10">
         <div className="text-4xl font-semibold">Recommendation</div>
@@ -155,10 +155,10 @@ const HomePage = () => {
         </div>
       </section>
       {/*/////////////////////////////////*/}
-      {/*End the Product HIGHTLIGHTS Desktop SECTION*/}
+      {/*End the Product HIGHLIGHTS Desktop SECTION*/}
       {/*/////////////////////////////////*/}
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
-      {/*Product HIGHTLIGHTS Mobile SECTION*/}
+      {/*Product HIGHLIGHTS Mobile SECTION*/}
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
       <section className="md:hidden flex flex-col items-center pt-4">
         <h1 className="text-center font-semibold text-xl pt-7 text-[#655050]">
@@ -219,7 +219,7 @@ const HomePage = () => {
         </a>
       </section>
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
-      {/*End the Product HIGHTLIGHTS Mobile SECTION*/}
+      {/*End the Product HIGHLIGHTS Mobile SECTION*/}
       {/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/}
       {/*********************************/}
       {/*RECOMMENDATION SECTION*/}

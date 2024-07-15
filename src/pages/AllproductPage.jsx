@@ -1,20 +1,14 @@
-import axios from "axios";
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
+import React, { useState, useEffect } from "react";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Allicon from "../assets/Allpd-icon/all.png";
 import Breadicon from "../assets/Allpd-icon/bread.png";
 import Coldicon from "../assets/Allpd-icon/cold.png";
 import Hoticon from "../assets/Allpd-icon/hot.png";
-import Plus from "../assets/Allpd-icon/Icon Plus.svg";
-import Minus from "../assets/Allpd-icon/Icon Minus.svg";
 import Buy from "../assets/Allpd-icon/Buy.svg";
 import { fetchProduct, addToCart } from "../services/productService";
 
 const AllProductPage = () => {
-  // const { addToCart, removeFromCart, cartItems } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState("all");
 
@@ -169,23 +163,6 @@ const AllProductPage = () => {
                         ฿{product.price}.-
                       </h3>
                     </div>
-                    {/* <div className="flex items-center gap-2">
-                      <img
-                        src={Minus}
-                        className="w-6 h-6 cursor-pointer"
-                        alt="Minus"
-                        onClick={() => removeFromCart(product.id)}
-                      />
-                      <h3 className="text-[18px]">
-                        {product.quantity}
-                      </h3>
-                      <img
-                        src={Plus}
-                        className="w-6 h-6 cursor-pointer"
-                        alt="Plus"
-                        onClick={() => addToCart(product)}
-                      />
-                    </div> */}
                   </div>
                 </div>
               </div>
