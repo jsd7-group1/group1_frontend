@@ -284,14 +284,14 @@ const PaymentPage = () => {
                   <h3 className="text-xl font-bold">Summary</h3>
                   <ul className=" p-2">
                     <li className="flex justify-between">
-                      VAT(7%) <span className="font-bold">${vat.toFixed(2)}</span>
+                      VAT(7%) <span className="font-bold">฿{vat.toFixed(2)}</span>
                     </li>
                     <li className="flex justify-between">
                       Purchase Date <span className="font-bold">{purchaseDate}</span>
                     </li>
                     <hr />
                     <li className="flex justify-between font-bold">
-                      Total <span className="font-bold">${orderTotal.toFixed(2)}</span>
+                      Total <span className="font-bold">฿{orderTotal.toFixed(2)}</span>
                     </li>
                   </ul>
                 </div>
