@@ -113,7 +113,11 @@ const GoogleGenerativeAIComponent = () => {
                 <div className="flex justify-start mb-2 cursor-pointer">
                   <div
                     className="bg-white p-3 rounded-lg max-w-xs hover:opacity-80 transition-opacity duration-300 ease-in-out"
-                    onClick={() => console.log(chat.product._id)}
+                    onClick={() => {
+                      console.log(chat.product);
+                      console.log(chat.product._id);
+                      handleAddToCart(chat.product._id);
+                    }}
                   >
                     <img
                       src={chat.product.imgUrl}
