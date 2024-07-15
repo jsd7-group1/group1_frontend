@@ -19,6 +19,11 @@ const PaymentPage = () => {
   const [house,setHouse] = useState('');
   const [note,setNote] = useState('');
   const [zipcode,setZipcode] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardHolder, setCardHolder] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [errors, setErrors] = useState({});
   // const [address,setAddress] = useState('');
   const navigate = useNavigate();
 
@@ -51,8 +56,42 @@ const PaymentPage = () => {
     }
   }, [order]);
 
+  const validateCard = () => {
+    const errors = {};
+
+    if (!cardNumber) {
+      errors.cardNumber = 'Card number is required';
+    } else if (!/^\d{16}$/.test(cardNumber)) {
+      errors.cardNumber = 'Card number must be 16 digits';
+    }
+
+    if (!cardHolder) {
+      errors.cardHolder = 'Cardholder name is required';
+    }
+
+    if (!expiryDate) {
+      errors.expiryDate = 'Expiry date is required';
+    } else if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+      errors.expiryDate = 'Expiry date must be in MM/YY format';
+    }
+
+    if (!cvv) {
+      errors.cvv = 'CVV is required';
+    } else if (!/^\d{3,4}$/.test(cvv)) {
+      errors.cvv = 'CVV must be 3 or 4 digits';
+    }
+    return errors;
+  };
+
   const handleCheckout = async (e) => {
     e.preventDefault();
+    if (payment === 'card') {
+      const validationErrors = validateCard();
+      if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+        return;
+      }
+    }
     const address = `${city}, ${house}, ${note}`;
     console.log(address)
     try {
@@ -135,24 +174,44 @@ const PaymentPage = () => {
                           <input
                             type="text"
                             placeholder="Card number"
+                            value={cardNumber}
+                            onChange={(e)=> setCardNumber(e.target.value)}
                             className="w-full md:w-[95%] rounded px-4 py-3"
                           />
+                          {errors.cardNumber && (
+                          <p className="text-red-500 text-sm">{errors.cardNumber}</p>
+                          )}
                           <input
                             type="text"
                             placeholder=" Name of card holder"
+                            value={cardHolder}
+                            onChange={(e)=> setCardHolder(e.target.value)}
                             className="w-full md:w-[95%] rounded px-4 py-3"
                           />
+                          {errors.cardHolder && (
+                          <p className="text-red-500 text-sm">{errors.cardHolder}</p>
+                          )}
                           <div className="gap-4">
                             <input
                               type="text"
                               placeholder="EXP."
+                              value={expiryDate}
+                              onChange={(e)=> setExpiryDate(e.target.value)}
                               className="w-full md:w-[40%] rounded px-4 mr-2 py-3"
                             />
+                            {errors.expiryDate && (
+                            <p className="text-red-500 text-sm">{errors.expiryDate}</p>
+                            )}
                             <input
                               type="text"
                               placeholder="CVV"
+                              value={cvv}
+                              onChange={(e)=> setCvv(e.target.value)}
                               className="w-full md:w-[40%] rounded px-4 py-3 mt-4 md:mt-0  "
                             />
+                            {errors.cvv && (
+                            <p className="text-red-500 text-sm">{errors.cvv}</p>
+                            )}
                           </div>
                         </div>
                       </form>
@@ -162,6 +221,7 @@ const PaymentPage = () => {
                           src={QRcode}
                           className="w-72 h-72"
                           alt="QR code"
+                          onClick={payment === 'qr' ? handleCheckout : undefined}
                         />
                       </div>
                     )}
