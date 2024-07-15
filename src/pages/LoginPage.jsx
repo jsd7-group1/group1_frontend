@@ -65,14 +65,14 @@ function LoginPage() {
                   {/* PHONE LOGO */}
                   <img
                     className="lg:hidden w-10 h-10"
-                    src="src\assets\images\navbar-icons\logo.png"
+                    src="https://res.cloudinary.com/productpic/image/upload/v1721025668/logo_dg7org.png"
                   />
                   {/*  */}
                   {/* PC LOGO */}
                   <div className="flex justify-center">
                     <img
                       className="hidden lg:block w-10 h-10"
-                      src="src\assets\images\navbar-icons\logo.png"
+                      src="https://res.cloudinary.com/productpic/image/upload/v1721025668/logo_dg7org.png"
                     />
                   </div>
                 </div>
