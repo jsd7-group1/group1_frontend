@@ -115,7 +115,7 @@ const CartPage = () => {
                 <span className="font-bold">฿{orderTotal.toFixed(2)}</span>
               </div>
               <div className="md:flex md:justify-end items-center md:mt-8 mt-2 flex justify-between">
-                <span className="text-gray-600 mr-4">Purchase Date:</span>
+                <span className="text-gray-600 mr-4">Order Date:</span>
                 <span className="font-bold">{purchaseDate}</span>
               </div>
               <Link to="/payment" className="md:flex md:justify-end md:mt-8 mt-8">
