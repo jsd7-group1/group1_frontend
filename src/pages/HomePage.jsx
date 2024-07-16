@@ -108,7 +108,7 @@ const HomePage = () => {
       {/*/////////////////////////////////*/}
       {/*SPECIAL FEATURE SECTION*/}
       {/*/////////////////////////////////*/}
-      <div className="flex justify-center py-10 bg-[#FCFAFA] ">
+      <div id="chatbot" className="flex justify-center py-10 bg-[#FCFAFA] ">
         <GoogleGenerativeAIComponent />
       </div>
       {/*/////////////////////////////////*/}
