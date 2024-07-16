@@ -49,9 +49,9 @@ const GoogleGenerativeAIComponent = () => {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     try {
-      const baristaPrompt = `As a barista, recommend a product for someone feeling ${mood}. Make it short. and only recommend it from ${products
+      const baristaPrompt = `As a friendly barista answer according to ${mood}. add emojis if possible Make it short. and only recommend it from ${products
         .map((product) => product.productName)
-        .join(", ")}. also give full product name when answer`;
+        .join(", ")}. also give full product name when answer and only recommend one product`;
 
       const result = await model.generateContent(baristaPrompt);
       const response = await result.response;
