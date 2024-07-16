@@ -7,8 +7,10 @@ import Coldicon from "../assets/Allpd-icon/cold.png";
 import Hoticon from "../assets/Allpd-icon/hot.png";
 import Buy from "../assets/Allpd-icon/Buy.svg";
 import { fetchProduct, addToCart } from "../services/productService";
+import { useNavigate } from "react-router-dom";
 
 const AllProductPage = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState("all");
 
@@ -53,7 +55,7 @@ const AllProductPage = () => {
 
   const handleAddToCart = async (productID) => {
     try {
-      const response = await addToCart(productID);
+      const response = await addToCart(productID, navigate);
       console.log(response);
       alert("Add successfully!")
     } catch (error) {
