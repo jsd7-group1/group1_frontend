@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { fetchProduct, addToCart } from "../services/productService";
 import { BsCartDash } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const GoogleGenerativeAIComponent = () => {
+  const navigate = useNavigate();
   const [generatedText, setGeneratedText] = useState("");
   const [mood, setMood] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +33,7 @@ const GoogleGenerativeAIComponent = () => {
 
   const handleAddToCart = async (productID) => {
     try {
-      const response = await addToCart(productID);
+      const response = await addToCart(productID, navigate);
       console.log(response);
       alert("Added to cart successfully!");
     } catch (error) {
@@ -49,9 +51,9 @@ const GoogleGenerativeAIComponent = () => {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     try {
-      const baristaPrompt = `As a barista, recommend a product for someone feeling ${mood}. Make it short. and only recommend it from ${products
+      const baristaPrompt = `As a friendly barista answer according to ${mood}. add emojis if possible Make it short. and only recommend it from ${products
         .map((product) => product.productName)
-        .join(", ")}. also give full product name when answer`;
+        .join(", ")}. also give full product name when answer and only recommend one product`;
 
       const result = await model.generateContent(baristaPrompt);
       const response = await result.response;

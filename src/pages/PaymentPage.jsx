@@ -29,7 +29,7 @@ const PaymentPage = () => {
   useEffect(() => {
     const fetchData = async () =>{
       try {
-        const orderData = await fetchUserOrder();
+        const orderData = await fetchUserOrder(navigate);
         setOrder(orderData);
       } catch (error) {
         console.log("Error fetching data",error);

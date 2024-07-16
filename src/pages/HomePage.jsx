@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Herobg from "../assets/images/hero/herobackground.png";
@@ -8,6 +8,7 @@ import { fetchProduct, addToCart } from "../services/productService";
 import { BsCartDash } from "react-icons/bs";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -39,7 +40,7 @@ const HomePage = () => {
 
   const handleAddToCart = async (productID) => {
     try {
-      const response = await addToCart(productID);
+      const response = await addToCart(productID, navigate);
       console.log(response);
       alert("Added to cart successfully!");
     } catch (error) {
