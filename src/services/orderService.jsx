@@ -19,18 +19,22 @@ const fetchOrder = async () => {
 };
 
 const fetchUserOrder = async () => {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await axiosInstance.get("/user", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.log("Error fetching data", error);
-    throw error;
-  }
+    try {
+        const token = localStorage.getItem('token');
+        if(!token){
+            window.location.href = '/login';
+            throw new Error("No authenticated")
+        }
+        const response = await axiosInstance.get('/user',{
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.log("Error fetching data",error)
+        throw error
+    }
 };
 
 const deleteProductFromCart = async (orderID, productID) => {
