@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import axios from "axios";
 import { fetchProduct, addToCart } from "../services/productService";
+import { BsCartDash } from "react-icons/bs";
 
 const GoogleGenerativeAIComponent = () => {
   const [generatedText, setGeneratedText] = useState("");
@@ -79,8 +79,8 @@ const GoogleGenerativeAIComponent = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#FCFAFA]">
-      <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full p-4">
+    <div className="flex items-center justify-center w-full min-h-screen bg-[#FCFAFA]">
+      <div className="bg-white rounded-lg shadow-lg md:w-3/6 max-h-screen md:h-[700px] p-4">
         <div className="flex items-center p-4 bg-[#655050] text-white rounded-t-lg">
           <img
             src="https://info.ehl.edu/hubfs/1440/1440x960-barista.jpg"
@@ -92,7 +92,7 @@ const GoogleGenerativeAIComponent = () => {
             <p>We typically reply in a few minutes.</p>
           </div>
         </div>
-        <div className="flex flex-col h-96 p-4 overflow-y-auto bg-gray-50">
+        <div className="flex flex-col max-h-screen md:h-[510px] p-4 overflow-y-auto bg-gray-50">
           {chatHistory.map((chat, index) => (
             <div key={index} className="mb-4">
               {chat.user && (
@@ -127,6 +127,7 @@ const GoogleGenerativeAIComponent = () => {
                     <h2 className="font-bold">{chat.product.productName}</h2>
                     <p>{chat.product.description}</p>
                     <p className="font-bold">฿{chat.product.price}</p>
+                    <BsCartDash size={26} />
                   </div>
                 </div>
               )}

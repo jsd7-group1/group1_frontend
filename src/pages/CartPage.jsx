@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Plus from "../assets/Allpd-icon/Icon Plus.svg";
 import Minus from "../assets/Allpd-icon/Icon Minus.svg";
 import NavBar from '../components/Navbar';
 import { fetchUserOrder, deleteProductFromCart, increaseQuantity, decreaseQuantity } from '../services/orderService';
+import { FaTrashCan } from "react-icons/fa6";
 
 // token จากการ LogIN ผ่าน PostMan
 
@@ -95,12 +96,12 @@ const CartPage = () => {
                   </div>
                   <span className="text-center w-1/5 font-semibold text-sm">฿{item.price}</span>
                   <span className="text-center w-1/5 font-semibold text-sm">฿{(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
-                  <button onClick={() => deleteFromCarts(ord.orderID, item.productID)} className='bg-red-500 text-xl font-bold rounded-md py-10 md:px-[3px] px-2'>–</button>
+                  <button onClick={() => deleteFromCarts(ord.orderID, item.productID)} className='bg-red-500 rounded-md py-5 p-5 md:p-5 '><FaTrashCan /></button>
                 </div>
             ))))}
           </div>
           <div className="md:p-12 flex justify-between w-full">
-            <Link to="/allProduct" className="hidden md:inline-block w-1/2">
+            <Link to="/product" className="hidden md:inline-block w-1/2">
               <span className='text-red-500 hover:text-red-700 font-bold'>⇦ Continue Shopping</span>
             </Link>
             <div className="md:p-1 md:w-1/2 w-full">
