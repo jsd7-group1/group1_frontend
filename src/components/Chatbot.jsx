@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { fetchProduct, addToCart } from "../services/productService";
+import { BsCartDash } from "react-icons/bs";
 
 const GoogleGenerativeAIComponent = () => {
   const [generatedText, setGeneratedText] = useState("");
@@ -126,6 +127,7 @@ const GoogleGenerativeAIComponent = () => {
                     <h2 className="font-bold">{chat.product.productName}</h2>
                     <p>{chat.product.description}</p>
                     <p className="font-bold">฿{chat.product.price}</p>
+                    <BsCartDash size={26} />
                   </div>
                 </div>
               )}

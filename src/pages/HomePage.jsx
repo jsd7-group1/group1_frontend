@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Herobg from "../assets/images/hero/herobackground.png";
 import GoogleGenerativeAIComponent from "../components/Chatbot";
 import { fetchProduct, addToCart } from "../services/productService";
+import { BsCartDash } from "react-icons/bs";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -174,8 +175,8 @@ const HomePage = () => {
                   {product.categoryName}
                 </div>
               </div>
-              <h3 className="text-lg font-semibold mt-4">
-                {product.productName}
+              <h3 className="text-lg flex justify-between font-semibold mt-4">
+                {product.productName}<BsCartDash size={24} />
               </h3>
               <p className="text-primary">฿{product.price}</p>
               <p className="text-gray-600">{product.description}</p>
