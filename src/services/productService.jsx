@@ -29,6 +29,10 @@ const productByCategory = async (categoryID) => {
 const addToCart = async (productID) => {
   try {
     const token = localStorage.getItem("token");
+    if(!token){
+        window.location.href = '/login';
+        throw new Error("No authenticated")
+    }
     const response = await axiosInstance.post(
       "/add-to-cart",
       { productID },
