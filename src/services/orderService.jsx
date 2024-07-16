@@ -1,7 +1,7 @@
 import axios from "axios";
 import { contract } from "ionicons/icons";
 
-const baseURL = "https://group1-backend.onrender.com/orders"
+const baseURL = "http://localhost:8081/orders"
 
 const axiosInstance = axios.create({
     baseURL,
@@ -9,6 +9,15 @@ const axiosInstance = axios.create({
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
 });
+const fetchOrder = async () => {
+  try {
+    const response = await axiosInstance.get("/");
+    return response.data;
+  } catch (error) {
+    console.log("Error fetching order", error);
+    throw error;
+  }
+};
 
 const fetchUserOrder = async () => {
     try {
@@ -102,4 +111,4 @@ const decreaseQuantity = async ({ orderID, productID }) => {
     }
 }
 
-export { fetchUserOrder, deleteProductFromCart, checkoutOrder, increaseQuantity, decreaseQuantity }
+export { fetchUserOrder, deleteProductFromCart, checkoutOrder, increaseQuantity, decreaseQuantity ,fetchOrder}

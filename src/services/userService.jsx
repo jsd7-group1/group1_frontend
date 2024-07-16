@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://group1-backend.onrender.com/users"
+const baseURL = "http://localhost:8081/users"
 
 const axiosInstance = axios.create({
     baseURL
@@ -33,4 +33,14 @@ const newRegister = async (email,fullName,password,confirmPassword) => {
     }
 }
 
-export { loginService, newRegister };
+
+const getUsers = async () => {
+    try {
+        const response = await axiosInstance.get("/");
+        return response.data;
+    } catch (error) {
+        console.log("Error fetching user",error);
+        throw error
+    }
+};
+export { loginService, newRegister ,getUsers};
