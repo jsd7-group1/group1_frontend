@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const menuItems = [
     { name: 'Dashboard', section: 'overview' },
