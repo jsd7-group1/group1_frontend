@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Plus from "../assets/Allpd-icon/Icon Plus.svg";
 import Minus from "../assets/Allpd-icon/Icon Minus.svg";
@@ -10,6 +10,7 @@ import { FaTrashCan } from "react-icons/fa6";
 // token จากการ LogIN ผ่าน PostMan
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const [vat, setVat] = useState(0);
   const [orderTotal, setOrderTotal] = useState(0);
   const [purchaseDate, setPurchaseDate] = useState('');
@@ -18,7 +19,7 @@ const CartPage = () => {
   useEffect(() => {
       const fetchData = async () =>{
         try {
-          const orderData = await fetchUserOrder();
+          const orderData = await fetchUserOrder(navigate);
           setOrder(orderData);
         } catch (error) {
           console.log("Error fetching data",error);
