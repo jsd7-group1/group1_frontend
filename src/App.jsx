@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import AllproductPage from './pages/AllproductPage.jsx';
 import HomePage from './pages/HomePage.jsx';
+import DashboardPage from './pages/Dashboard.jsx'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/product" element={<AllproductPage />}></Route>
         <Route path="/cart" element={<CartPage />}></Route>
         <Route path="/payment" element={<PaymentPage />}></Route>
+        <Route path ="/Dashboard" element={<DashboardPage />}></Route>
       </Routes>
     </Router>
   );
