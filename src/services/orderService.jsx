@@ -12,6 +12,10 @@ const axiosInstance = axios.create({
 const fetchUserOrder = async () => {
     try {
         const token = localStorage.getItem('token');
+        if(!token){
+            window.location.href = '/login';
+            throw new Error("No authenticated")
+        }
         const response = await axiosInstance.get('/user',{
             headers:{
                 Authorization: `Bearer ${token}`
