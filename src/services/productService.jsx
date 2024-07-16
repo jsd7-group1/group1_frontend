@@ -26,11 +26,11 @@ const productByCategory = async (categoryID) => {
   }
 };
 
-const addToCart = async (productID) => {
+const addToCart = async (productID, navigate) => {
   try {
     const token = localStorage.getItem("token");
     if(!token){
-        window.location.href = '/login';
+        navigate('/login')
         throw new Error("No authenticated")
     }
     const response = await axiosInstance.post(
