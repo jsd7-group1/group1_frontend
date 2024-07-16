@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer'
 import { Link, useNavigate } from 'react-router-dom'

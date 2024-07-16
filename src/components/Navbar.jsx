@@ -3,6 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import { IonIcon } from "@ionic/react";
 import { menu, close } from "ionicons/icons";
 import Logo from "../assets/images/navbar-icons/logo.png";
+import { BsCartDash } from "react-icons/bs";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,7 +38,6 @@ const NavBar = () => {
                 potioncafe
               </p>
             </div>
-
             <div
               className={`nav-links z-10 duration-500 absolute bg-[#f4f4f4] bg-opacity-80 md:bg-opacity-80 hover:bg-opacity-100 md:m-2 md:left-auto md:right-2 top-[-100%] left-3 right-3 md:w-[20%] w-full flex item-center md:justify-center items-center p-8 rounded-xl drop-shadow-md ${
                 menuOpen ? "top-[11%]" : ""
@@ -143,6 +143,9 @@ const NavBar = () => {
                 </div>
               </div>
               <div className="flex items-center gap-6">
+                <Link to="/cart">
+                  <BsCartDash size={26} />
+                </Link>
                 <IonIcon
                   icon={menuOpen ? close : menu}
                   onClick={onToggleMenu}
