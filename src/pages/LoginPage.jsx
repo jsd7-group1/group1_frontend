@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { loginService } from "../services/userService";
-
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 function LoginPage() {
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,6 +22,7 @@ function LoginPage() {
     });
   };
 
+  const [visible, setVisible] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,9 +41,9 @@ function LoginPage() {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await loginService( formData.email, formData.password );
+        await loginService(formData.email, formData.password);
         console.log("Login successful");
-        navigate("/")
+        navigate("/");
       } catch (error) {
         console.log(error);
         alert("Login failed");
@@ -98,17 +99,20 @@ function LoginPage() {
                         placeholder="Email"
                       />
                       {errors.email && <span>{errors.email}</span>}
-                      <input
-                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        autoComplete="off"
-                        placeholder="Password"
-                        required=""
-                      />
+                      <div className="flex justify-between items-center w-full rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5">
+                        <input
+                          className="px-8 py-4 font-medium bg-gray-100 rounded-lg placeholder-gray-500 text-sm focus:outline-none focus:bg-gray-100"
+                          id="password"
+                          type={visible ? "password" : "text"}
+                          name="password"
+                          value={formData.password}
+                          onChange={handleChange}
+                          autoComplete="off"
+                          placeholder="Password"
+                          required=""
+                        />
+                        <div className="pr-6" onClick={() => setVisible(!visible)}>{visible ? <FaEye /> : <FaEyeSlash />} </div>
+                      </div>
                       {errors.password && <span>{errors.password}</span>}
                       <p className="text-gray-900 mt-4 flex flex-row gap-1.5">
                         {" "}
@@ -119,28 +123,28 @@ function LoginPage() {
                           </div>
                         </Link>
                       </p>
-                          {/* check box for remember me  */}
-                        <button
-                          type="submit"
-                          onClick={handleSubmit}
-                          className="mt-5 tracking-wide font-semibold bg-[#A8715C] text-gray-100 w-full py-4 rounded-lg hover:bg-[#89583f] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                      {/* check box for remember me  */}
+                      <button
+                        type="submit"
+                        onClick={handleSubmit}
+                        className="mt-5 tracking-wide font-semibold bg-[#A8715C] text-gray-100 w-full py-4 rounded-lg hover:bg-[#89583f] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                      >
+                        {/*  */}
+                        <svg
+                          className="w-6 h-6 -ml-2"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
-                          {/*  */}
-                          <svg
-                            className="w-6 h-6 -ml-2"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                            <circle cx="8.5" cy={7} r={4} />
-                          </svg>
-                          <span className="ml-3">
-                            <div> Sign In</div>{" "}
-                          </span>
-                        </button>
+                          <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                          <circle cx="8.5" cy={7} r={4} />
+                        </svg>
+                        <span className="ml-3">
+                          <div> Sign In</div>{" "}
+                        </span>
+                      </button>
                       <p />
                     </div>
                   </form>

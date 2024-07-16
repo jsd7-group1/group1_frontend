@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { newRegister } from "../services/userService";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -11,6 +13,9 @@ function RegisterPage() {
     confirmPassword: "",
     file: null,
   });
+
+  const [visible, setVisible] = useState(true);
+  const [visible2, setVisible2] = useState(true);
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -125,21 +130,37 @@ function RegisterPage() {
                         placeholder="Full name"
                       />
                       {errors.fullName && <span>{errors.fullName}</span>}
-                      <input
-                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                        name="password"
-                        type="password"
-                        onChange={handleChange}
-                        placeholder="Password"
-                      />
+                      <div className="flex justify-between items-center w-full rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5">
+                        <input
+                          className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 placeholder-gray-500 text-sm focus:outline-none focus:bg-gray-100"
+                          name="password"
+                          type={visible ? "password" : "text"}
+                          onChange={handleChange}
+                          placeholder="Password"
+                        />
+                        <div
+                          className="pr-6"
+                          onClick={() => setVisible(!visible)}
+                        >
+                          {visible ? <FaEye /> : <FaEyeSlash />}{" "}
+                        </div>
+                      </div>
                       {errors.password && <span>{errors.password}</span>}
-                      <input
-                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                        name="confirmPassword"
-                        type="password"
-                        onChange={handleChange}
-                        placeholder="Confirm Password"
-                      />
+                      <div className="flex justify-between items-center w-full rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5">
+                        <input
+                          className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 placeholder-gray-500 text-sm focus:outline-none focus:bg-gray-100"
+                          name="confirmPassword"
+                          type={visible2 ? "password" : "text"}
+                          onChange={handleChange}
+                          placeholder="Confirm Password"
+                        />
+                        <div
+                          className="pr-6"
+                          onClick={() => setVisible2(!visible2)}
+                        >
+                          {visible2 ? <FaEye /> : <FaEyeSlash />}{" "}
+                        </div>
+                      </div>
                       {errors.confirmPassword && (
                         <span>{errors.confirmPassword}</span>
                       )}
@@ -150,7 +171,7 @@ function RegisterPage() {
                         Upload file(optional)
                       </label>
                       <input
-                        className="block w-full py-1 text-sm text-gray-900 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none  dark:placeholder-gray-400"
+                        className="block w-full rounded-md py-1 text-sm text-gray-900 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none  dark:placeholder-gray-400"
                         name="file"
                         type="file"
                         onChange={handleChange}
