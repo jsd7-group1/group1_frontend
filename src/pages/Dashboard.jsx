@@ -6,6 +6,7 @@ import SalesByProductChart from "../components/SaleByProductChart";
 import MonthlySummaryChart from "../components/MonthlySummaryChart";
 import AdminProduct from "../components/AdminProduct";
 import AdminOrder from "../components/AdminOrder";
+import AdminUser from "../components/AdminUser";
 import { getUsers } from "../services/userService";
 
 const DashboardPage = () => {
@@ -125,12 +126,7 @@ const MainContent = ({
       )}
       {activeSection === "products" && <AdminProduct />}
       {activeSection === "orders" && <AdminOrder />}
-      {activeSection === "user" && (
-        <div>
-          <h1 className="text-3xl font-semibold mb-6">User</h1>
-          {/* User content goes here */}
-        </div>
-      )}
+      {activeSection === "user" && <AdminUser />}
       {activeSection === "logout" && (
         <div>
           <h1 className="text-3xl font-semibold mb-6">Logout</h1>
