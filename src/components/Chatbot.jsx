@@ -46,14 +46,16 @@ const GoogleGenerativeAIComponent = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const apiKey = "AIzaSyDMEUw1mvHx1zO2CcnsvyMRm3fUEoFVtlU"; // Replace with your actual API key
+    const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     try {
       const baristaPrompt = `As a friendly barista answer according to ${mood}. add emojis if possible Make it short. and only recommend it from ${products
         .map((product) => product.productName)
-        .join(", ")}. also give full product name when answer and only recommend one product`;
+        .join(
+          ", "
+        )}. also give full product name when answer and only recommend one product`;
 
       const result = await model.generateContent(baristaPrompt);
       const response = await result.response;
